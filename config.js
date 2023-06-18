@@ -6,6 +6,7 @@
 // • ZYKO MD
 // • Aldi Lesmana
 // • Wh Mods Dev
+// • XTRAM-TEAM
 
 //[!] Jangan Lupa Ganti Ownernya
 
@@ -24,14 +25,9 @@ import moment from 'moment-timezone'
 let wibh = moment.tz('Asia/Jakarta').format('HH')
     let wibm = moment.tz('Asia/Jakarta').format('mm')
     let wibs = moment.tz('Asia/Jakarta').format('ss')
-    let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
-    
+    let wktuwib = `${wibh} H ${wibm} M ${wibs} S`    
     let d = new Date(new Date + 3600000)
     let locale = 'id'
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
-    // Offset    0 is  0.00
-    // Offset  420 is  7.00
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
     let date = d.toLocaleDateString(locale, {
@@ -43,58 +39,60 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
     
 /*============== SOCIAL ==============*/
 
-// kalo ga punya ketik "-" atau biarin aja biar ada creditsnya :v
+// if you don't have it, type "-" or leave it alone so there are credits :v
 
 global.sig = 'https://instagram.com/zykomd'
-global.sgh = 'https://github.com/ZykoBotz-MD'
+global.sgh = 'https://github.com/Oktetobussines'
 global.sgc = 'https://chat.whatsapp.com/EuRW5GTkIm7Got8ncaiI6X'
 global.sdc = 'https://www.discord.com'
 global.snh = 'https://youtu.be/0I8MBnCuuzs'
-global.sfb = 'https://www.facebook.com/ZykoBotz'
-global.syt = 'https://youtube.com/@zykobotz'
+global.sfb = 'https://www.facebook.com/Ayang'
+global.syt = 'https://youtube.com/@xzuaneditz'
 
 /*============== PAYMENT ==============*/
-global.pdana = '0852-1264-9276'
-global.povo = '0852-1264-9276'
-global.pgopay = '0852-1264-9276'
-global.plinkaja = '0852-1264-9276'
-global.ppulsa = '0852-1264-9276' 
-global.ppulsa2 = '0831-3332-9293'
+global.pdana = '0822-8930-4381'
+global.povo = '0822-8930-4381'
+global.pgopay = '0822-8930-4381'
+global.plinkaja = '0822-8930-4381'
+global.ppulsa = '0822-8930-4381' 
+global.ppulsa2 = '0822-8930-4381'
 global.psaweria = 'https://saweria.co/Zykomd'
 
 /*============== NOMOR ==============*/
-global.nomorbot = '6281269842230'
-global.nomorown = '6283133329293'
-global.namebot = 'ZYKOBOTZ MD'
-global.nameown = 'ZYKO MD'
+global.nomorbot = '+6281916753741'
+global.nomorown = '+6282289304381'
+global.namebot = 'IKYBOT MD'
+global.nameown = 'Ayang Iky'
 
 /*============== Github Thanks To ==============*/
 global.namagithub = 'ZykoBotz-MD'
 global.linkgithub = sgh
 
 /*============== CREATE PANEL ==============*/
-global.domain = 'https://botzmd.mystore.icu'
-global.apikey = 'ptla_eUnXMYgnR8VRBqWPaq87r3vzd1XN80Rb9AFXp6aCWkU' 
-global.c_apikey = 'ptlc_gfzzO8m0DzckMWKrjYLkZKue8y5cx0DMvXWACiqhCRi'
+global.domain = ' ' // ISI LINK DOMAIN
+global.apikey = ' ' // ISI APIKEY PTLA
+global.c_apikey = ' ' // ISI APIKEY PTLC
 
 /*============== APIKEY SIMPEL ==============*/
 global.zenzkey = pickRandom(["b8040941f7"])
 global.lolkey = pickRandom(["e54205a4ca2caa368cc067bb", "8e66d0934cf741bfd2182c16", "327a6596e4c4baa20c756132", "bukanitucuy14315195", "85faf717d0545d14074659ad", "ed78c137a46873c5b8e5fe3b", "zulfikarbot"])
 
+
 /*============== STAFF ==============*/
 global.owner = [
-  ['6283133329293', 'ZYKO MD', true],
-  ['-', 'ISI KALAU ADA', true],
-  ['-', 'ISI KALAU ADA', true],
+  ['+6282289304381', 'Ayang🖤', true],
+  ['+6282289304381', 'Ayang', true],
+  ['082289304381', 'zaky', true],
   ['-', 'ISI KALAU ADA', true],
   ['-', 'ISI KALAU ADA', true]
-
-] 
+]
 global.mods = [] 
 global.prems = [] 
 
+
 /*============== API ==============*/
-global.APIs = {
+global.APIs = { 
+  
   xteam: 'https://api.xteam.xyz',
   lol: 'https://api.lolhuman.xyz',
   dhnjing: 'https://dhnjing.xyz',
@@ -112,8 +110,9 @@ global.APIs = {
   zenz: "https://api.zahwazein.xyz",
   btchx: "https://api.botcahx.biz.id",
   males : 'https://malesin.xyz'
+  
 }
-global.APIKeys = {
+global.APIKeys = { 
   'https://api.lolhuman.xyz': 'e54205a4ca2caa368cc067bb',
   'https://api.zeks.me': 'apivinz',
   'https://pencarikode.xyz': 'pais',
@@ -126,34 +125,39 @@ global.APIKeys = {
   "https://api.zahwazein.xyz": "LuOlangNgentot",
   "https://api.botcahx.biz.id": "Admin",
   'https://violetics.pw': 'beta'
+
 }
-// Kata APIKEY itu isi dengan apikey lu sendiri, dengan beli ke website itu
+// The word APIKEY is filled with your own apikey, by buying it on the website
 
 /*============== WATERMARK ==============*/
-global.wm = '                「 ZYKOBOTZ MD 」'
-global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘ZYKOBOTZ MD ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
-global.wm3 = "⫹⫺ ZYKOBOTZ MD"
+global.wm = '                「 IKY BOT 」'
+global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘ANIMEBOTZ MD ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
+global.wm3 = "⫹⫺ ANIMEBOTZ MD"
 global.botdate = `⫹⫺ DATE: ${week} ${date}\n⫹⫺ TIME: ${wktuwib}`
 global.bottime = `T I M E : ${wktuwib}`
-global.titlebot = `⫹⫺ WhatsApp Bot | By ZYKO MD`
+global.titlebot = `⫹⫺ WhatsApp Bot | By Iky`
 global.packname = '☂︎ ᴄʀᴇᴀᴛᴇᴅ ʙʏ'
-global.author = "ZYKOBOTZ MD 乂 ZYKO MD"
-
+global.author = "IKY ZAKY 乂 ANIMEBOTZ MD"
+global.footer = 'ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ ᴢᴀᴋʏ ɪᴋʏ ッ'
 /*Fake*/
 global.fsizedoc = SizeDoc()
 global.fpagedoc = PageDoc()
 global.thumbdoc = ImgEstetik()
 /*=========== FAKE SIZE ===========*/
-//global.fsizedoc = '99999999999999' // default 10TB
-//global.fpagedoc = '999'
+
 
 /*============== LOGO ==============*/
 global.ucapan = Pagi()
-global.thumb = ImgEstetik()
+global.thumb = ImgEstetik() 
 global.imagebot = ImgMountain()
 global.giflogo = VideoGalau()
 global.thumbs = ImgBoneka()
+global.donasi = 'https://telegra.ph/file/980b183cc268c2991bdd3.jpg'
+global.pilihan = 'https://telegra.ph/file/64c2ba179bfd4a5d9a949.jpg'
+global.menu = 'https://telegra.ph/file/2ab02336764d7c384a6c9.jpg'
+global.zykomd = 'https://telegra.ph/file/9df3a76790e5ebda9dd05.jpg'
 global.fla = 'https://telegra.ph/file/9cc48b21c6eda65133682.jpg'
+global.brocas = "https://telegra.ph/file/cc1cca5db80d023cd470b.jpg"
 global.thumbnailUrl = ImgBoneka()
 global.emojis = pickRandom(["🀄️",
 "🃏",
@@ -3516,13 +3520,13 @@ global.emojis = pickRandom(["🀄️",
 "®️",
 ""])
 global.flaaa2 = ImgLogo()
-global.flaaa = ImgLogo()
+global.flaaa = ImgLogo() 
 global.hwaifu2 = ImgWaifu()
 
 /*============== HENTAI ==============*/ 
 //OPTIONS
-global.optsnsfw = true
-global.premnsfw = true 
+global.optsnsfw = true // Untuk mematikan Dan Menyalakan Nsfw
+global.premnsfw = true // Nsfw Mode Premium?
 
 
 //Ini cuma simpenan owner kok :v
@@ -3540,8 +3544,9 @@ global.ephemeral = "86400"
 global.doc = pickRandom(["application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel", "application/msword", "application/pdf", "text/rtf"])
 
 /*============== TEXT ==============*/
-global.wait = "```「▰▰▰▱▱▱▱▱▱▱」Loading...```"
-global.eror = "```404 error```"
+global.wait = '「▰▰▰▱▱▱▱▱▱▱」Loading...'
+global.md = pickRandom(["ʟᴏᴀᴅɪɴɢ", "ᴛᴜɴɢɢᴜ", "ᴘʀᴏsᴇs", "ᴛᴜɴɢɢᴜ sᴇʙᴇɴᴛᴀʀ", "ᴅᴀʟᴀᴍ ᴘʀᴏsᴇs", "𝘁𝘂𝗻𝗴𝗴𝘂 𝗹𝗼𝗮𝗱𝗶𝗻𝗴", "𝘁𝘂𝗻𝗴𝗴𝘂 𝘀𝗲𝗯𝗲𝗻𝘁𝗮𝗿", "𝗽𝗿𝗼𝘀𝗲𝘀", "𝗱𝗮𝗹𝗮𝗺 𝗽𝗿𝗼𝘀𝗲𝘀", "𝗺𝗼𝗵𝗼𝗻 𝘁𝘂𝗻𝗴𝗴𝘂 𝘀𝗲𝗯𝗲𝗻𝘁𝗮𝗿", "𝘀𝗮𝗯𝗮𝗿 𝗸𝗮𝗸", "𝘀𝗮𝗯𝗮𝗿 𝗼𝗺"])
+global.eror = '404 error'
 global.rg = '╰⊱✅⊱ *𝙍𝙀𝙎𝙐𝙇𝙏* ⊱✅⊱╮\n\n'
 global.ag = '╰⊱⚠️⊱ *𝙒𝘼𝙍𝙉𝙄𝙉𝙂* ⊱⚠️⊱╮\n\n'
 
@@ -3555,33 +3560,30 @@ global.drtf = 'text/rtf'
 
 /*=========== HIASAN ===========*/
 // DEFAULT MENU
-global.dmenut = 'ଓ═┅═━–〈'
-global.dmenub = '┊↬'
+global.dmenut = 'ଓ═┅═━–〈' 
+global.dmenub = '┊↬' 
 global.dmenub2 = '┊'
-global.dmenuf = '┗––––––––––✦'
-
-// COMMAND MENU
+global.dmenuf = '┗––––––––––✦' 
 global.dashmenu = pickRandom(["┅═┅═❏ *DASHBOARD* ❏═┅═┅", "☰ *D A S B O A R D* ☰"])
 global.cmenut = '❏––––––『' 
 global.cmenuh = '』––––––' 
-global.cmenub = '┊✦ '
-global.cmenuf = '┗━═┅═━––––––๑\n'
+global.cmenub = '┊✦ ' 
+global.cmenuf = '┗━═┅═━––––––๑\n' 
 global.cmenua = '\n⌕ ❙❘❙❙❘❙❚❙❘❙❙❚❙❘❙❘❙❚❙❘❙❙❚❙❘❙❙❘❙❚❙❘ ⌕\n     '
-global.pmenus = pickRandom(["◈", "➭", "ଓ", "⟆•", "⳻⳻", "•", "↬", "◈▻", "⭑", "ᯬ", "◉", "᭻", "»", "〆", "々", "⛥", "✗", "⚜", "⚚", "♪"])
+global.pmenus = pickRandom(["◈", "➭", "ଓ", "⟆•", "⳻⳻", "•", "↬", "◈▻", "⭑", "ᯬ", "◉", "᭻", "»", "〆", "々", "⛥", "✗", "⚜", "⚚", "♪"]) 
 
-global.htki = '––––––『'
-global.htka = '』––––––'
+global.htki = '––––––『' 
+global.htka = '』––––––' 
 global.lopr = pickRandom(["Ⓟ", "🅟"])
 global.lolm = 'Ⓛ'
 global.htjava = pickRandom(["⛶", "❏", "⫹⫺", "☰", "⎔", "✦", "⭔", "⬟", "⛊", "⚝"])
 global.hsquere = pickRandom(["⛶", "❏", "⫹⫺", "☰", "⎔", "✦", "⭔", "⬟", "⛊", "⚝"])
 
 /*============== STICKER WM ==============*/
-global.stickpack = 'ZYKOBOTZ MD'
-global.stickauth = `By ©ZYKO MD`
+global.stickpack = 'IKYBOTZ MD'
+global.stickauth = `By ©ZAKY`
 
-global.multiplier = 69 // The higher, The harder levelup
-
+global.multiplier = 69 
 /*============== EMOJI ==============*/
 /*Emoji*/
 global.rpg = {
@@ -3732,7 +3734,6 @@ function VideoGalau() {
 ])
   return Galau
 }
-
 /* Img Array */
 function ImgLogo() {
   let LoGo = [
@@ -3915,7 +3916,7 @@ function ImgEstetik() {
       "https://i.pinimg.com/236x/51/7e/a1/517ea1599477e67d67a6793f8c4decf1.jpg",
       "https://i.pinimg.com/originals/df/65/2a/df652af3f2ba4ecde1124189586eb8ac.jpg",
       "https://i.pinimg.com/236x/37/7c/8b/377c8b4d1428ad52fc32bb1b4b759c56.jpg",
-      "https://telegra.ph/file/9cc48b21c6eda65133682.jpg"
+      "https://i.ibb.co/XZrK6yQ/transformers.jpg"
   ])
   return DocImg
 }
@@ -4022,7 +4023,7 @@ function ImgMountain() {
       "https://i.pinimg.com/originals/9a/c1/9d/9ac19dd1d82ce23fa7839251bab7d7d5.jpg",
       "https://i.pinimg.com/originals/ae/db/4c/aedb4c77e9946e9e7127ab330cc7efb4.jpg",
       "https://i.pinimg.com/originals/5c/bf/ca/5cbfca02940248e6617eea9b31911cbf.jpg",
-      "https://telegra.ph/file/9cc48b21c6eda65133682.jpg"
+      "https://i.ibb.co/XZrK6yQ/transformers.jpg"
 ])
   return ResNo
 }
@@ -4130,7 +4131,7 @@ function ImgBoneka() {
       "https://i.pinimg.com/originals/82/c2/69/82c269380232260047fbc028a34d890b.jpg",
       "https://i.pinimg.com/originals/14/f7/4c/14f74ce49d9cc56002dae86fc0ad4882.jpg",
       "https://i.pinimg.com/736x/f0/a3/7b/f0a37b0ffa16839e0373364c0d97278e.jpg",
-      "https://telegra.ph/file/9cc48b21c6eda65133682.jpg"
+      "https://i.ibb.co/XZrK6yQ/transformers.jpg"
 ]
   return Boneka
 }
@@ -4367,13 +4368,13 @@ function PageDoc() {
   return Math.pow(10, 10)
 }
 
-/* Apa Kabar */
+
 function Sapa() {
   let Apa = pickRandom(["Apa kabar ", "Halo ", "Hai "])
   return Apa
 }
 
-/* Selamat Pagi */
+
 function Pagi() {
   let waktunya = moment.tz("Asia/Jakarta").format("HH")
   let ucapin = "Selamat malam 🌙"
