@@ -323,22 +323,29 @@ try {
 
       //------------------< MENU All>----------------
 let all = `
-Hello ${name}, ${ucapan()}, I am a WhatsApp botz that comes with cool features like download tiktok, create stickers, search for songs, and much more I'm here to help you, in various ways, including sending, and etc. The available features are below
-
- *Databases* : ${totalreg}
- *Baileys:* Multi Device
- 
-If you find an error, report it immediately by typing .reports good afternoon owner of the download-ig error feature! fix it!
-
- *INFO CMD*
+*ɪᴋʏᴢʏᴋ-ᴍᴅ* ᴀᴅᴀʟᴀʜ ᴘʀᴏɢʀᴀᴍ ʙᴏᴛ ᴡʜᴀᴛꜱᴀᴘᴘ ʏᴀɴɢ ꜱɪᴀᴘ ᴍᴇᴍʙᴀɴᴛᴜ ᴀɴᴅᴀ ᴅᴀʟᴀᴍ ᴍᴇʟᴀᴋᴜᴋᴀɴ ʙᴇʀʙᴀɢᴀɪ ᴛɪɴᴅᴀᴋᴀɴ, ᴍᴇɴᴄᴀʀɪ ᴅᴀᴛᴀ ᴀᴛᴀᴜ ɪɴꜰᴏʀᴍᴀꜱɪ ᴍᴇʟᴀʟᴜɪ ᴡʜᴀᴛꜱᴀᴘᴘ.
+•───────────────────•
+👋🏻 _ʜᴀʟᴏ_ ${name},
+🧿 _*ʟᴇᴠᴇʟ*_ : ${level} 
+👥 _*ᴛᴏᴛᴀʟ ᴜꜱᴇʀ*_ : ${totalreg}
+📈 _*ᴜᴘᴛɪᴍᴇ*_ : ${muptime}
+📁 _*ʙᴀɪʟᴇʏs*_ : Multi Device
+•───────────────────•
+ʜᴀʟᴏ ${name} ᴀᴅᴀ ʏᴀɴɢ ʙɪꜱᴀ ꜱᴀʏᴀ ʙᴀɴᴛᴜ?
+ᴋᴇᴛɪᴋ *.ᴏᴡɴᴇʀ* ᴊɪᴋᴀ ɪɴɢɪɴ ᴍᴇᴍᴀsᴜᴋᴀɴ ʙᴏᴛ ɪɴɪ ᴅɪ ɢᴄ ᴋᴀᴍᴜ, ɪɴɪ ᴀᴅᴀʟᴀʜ ʙᴏᴛ ғʀᴇᴇ ᴍᴀsɪʜ ᴅᴀʟᴀᴍ ᴘᴇʀᴋᴇᴍʙᴀɴɢᴀɴ ᴊᴀᴅɪ ᴍᴀᴋʟᴜᴍɪɴ ᴊɪᴋᴀ ᴀᴅᴀ ʏᴀɴɢ ᴇʀʀᴏʀ😇, ᴛᴇʀɪᴍᴀ ᴋᴀꜱɪʜ
+•───────────────────•
+🄹🄰🄼: ${time}
+🅃🄰🄽🄶🄶🄰🄻: ${date}
+•───────────────────•
+ 🅘🅝🅕🅞 🅒🅜🅓
      
-*Ⓟ* = Premium
-*Ⓛ* = Limit`
+*Ⓟ* = 𝙋𝙧𝙚𝙢𝙞𝙪𝙢
+*Ⓛ* = 𝙇𝙞𝙢𝙞𝙩`
 conn.sendMessage(m.chat, {
-text: all + readMore + '\n\n' + text,
+text: all + readMore + '\n\n' + te=xt,
 contextInfo: {
 externalAdReply: {
-title: v,
+title: '𝙸𝚔𝚢𝙱𝚘𝚝|𝙱𝚈 ᴢᴀᴋʏ',
 thumbnailUrl: menu,
 sourceUrl: sgc,
 mediaType: 1,
@@ -347,7 +354,7 @@ renderLargerThumbnail: true
    
       await conn.sendMessage(m.chat, {
         react: {
-            text: "⚡",
+            text: "✔",
             key: m.key,
         }
     })
