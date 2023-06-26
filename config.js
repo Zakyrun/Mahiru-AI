@@ -43,7 +43,7 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
 
 global.sig = 'https://instagram.com/zykomd'
 global.sgh = 'https://github.com/Oktetobussines'
-global.sgc = 'https://chat.whatsapp.com/I6cXD41t2It2ZsCWxUHq3K'
+global.sgc = 'https://chat.whatsapp.com/EuRW5GTkIm7Got8ncaiI6X'
 global.sdc = 'https://www.discord.com'
 global.snh = 'https://youtu.be/0I8MBnCuuzs'
 global.sfb = 'https://www.facebook.com/Ayang'
@@ -138,7 +138,7 @@ global.bottime = `T I M E : ${wktuwib}`
 global.titlebot = `⫹⫺ WhatsApp Bot | By Iky`
 global.packname = '☂︎ ᴄʀᴇᴀᴛᴇᴅ ʙʏ'
 global.author = "IKY ZAKY 乂 ANIMEBOTZ MD"
-global.footer = 'ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ ᴢᴀᴋʏ ɪᴋʏ ッ'
+global.footer = 'ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ http://ī.am/𝘻𝘢𝘬𝘺𝘪𝘬𝘺 ッ http://ī.am/𝘪𝘬𝘺𝘣𝘰𝘵'
 /*Fake*/
 global.fsizedoc = SizeDoc()
 global.fpagedoc = PageDoc()
@@ -153,11 +153,11 @@ global.imagebot = ImgMountain()
 global.giflogo = VideoGalau()
 global.thumbs = ImgBoneka()
 global.donasi = 'https://telegra.ph/file/980b183cc268c2991bdd3.jpg'
-global.pilihan = 'https://telegra.ph/file/64c2ba179bfd4a5d9a949.jpg'
-global.menu = 'https://telegra.ph/file/2ab02336764d7c384a6c9.jpg'
-global.zykomd = 'https://telegra.ph/file/9df3a76790e5ebda9dd05.jpg'
+global.pilihan = 'https://telegra.ph/file/360dadafde8dcaee530aa.jpg'
+global.menu = 'https://telegra.ph/file/64343ab248322a44fb340.jpg'
+global.zykomd = 'https://telegra.ph/file/9d7c2bcdb29eadec4c71d.jpg'
 global.fla = 'https://telegra.ph/file/9cc48b21c6eda65133682.jpg'
-global.brocas = "https://telegra.ph/file/cc1cca5db80d023cd470b.jpg"
+global.brocas = "https://telegra.ph/file/383e588591ee366c20f53.jpg"
 global.thumbnailUrl = ImgBoneka()
 global.emojis = pickRandom(["🀄️",
 "🃏",
