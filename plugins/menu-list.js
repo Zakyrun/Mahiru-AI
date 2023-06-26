@@ -333,38 +333,65 @@ let all = `
 •───────────────────•
 ʜᴀʟᴏ ${name} ᴀᴅᴀ ʏᴀɴɢ ʙɪꜱᴀ ꜱᴀʏᴀ ʙᴀɴᴛᴜ?
 ᴋᴇᴛɪᴋ *.ᴏᴡɴᴇʀ* ᴊɪᴋᴀ ɪɴɢɪɴ ᴍᴇᴍᴀsᴜᴋᴀɴ ʙᴏᴛ ɪɴɪ ᴅɪ ɢᴄ ᴋᴀᴍᴜ, ɪɴɪ ᴀᴅᴀʟᴀʜ ʙᴏᴛ ғʀᴇᴇ ᴍᴀsɪʜ ᴅᴀʟᴀᴍ ᴘᴇʀᴋᴇᴍʙᴀɴɢᴀɴ ᴊᴀᴅɪ ᴍᴀᴋʟᴜᴍɪɴ ᴊɪᴋᴀ ᴀᴅᴀ ʏᴀɴɢ ᴇʀʀᴏʀ😇, ᴛᴇʀɪᴍᴀ ᴋᴀꜱɪʜ
-•───────────────────•
-🄹🄰🄼: ${time}
+‧͙⁺˚*･༓☾𝚆𝚊𝚔𝚝𝚞/𝚃𝚊𝚗𝚐𝚐𝚊𝚕☽༓･*˚⁺‧͙
+🄹🄰🄼 🆆🅸🄱 : ${wib}
+🄹🄰🄼 🆆🅸🆃🄰 : ${wita}
 🅃🄰🄽🄶🄶🄰🄻: ${date}
-•───────────────────•
+➷➹➷➹➷➹➷➹➷➹➷➹➷➹
  🅘🅝🅕🅞 🅒🅜🅓
      
 *Ⓟ* = 𝙋𝙧𝙚𝙢𝙞𝙪𝙢
 *Ⓛ* = 𝙇𝙞𝙢𝙞𝙩`
 conn.sendMessage(m.chat, {
-text: all + readMore + '\n\n' + te=xt,
+text: all + readMore + '\n\n' + text,
 contextInfo: {
 externalAdReply: {
-title: '𝙸𝚔𝚢𝙱𝚘𝚝|𝙱𝚈 ᴢᴀᴋʏ',
+title: 'ᴢᴀᴋʏ',
 thumbnailUrl: menu,
 sourceUrl: sgc,
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
    
-      await conn.sendMessage(m.chat, {
-        react: {
-            text: "✔",
-            key: m.key,
-        }
-    })
-  } catch (e) {
+let mangkane1 = "mangkane1"
+let mangkane2 = "mangkane2"
+let mangkane3 = "mangkane3"
+let mangkane4 = "mangkane4"
+let mangkane5 = "mangkane5"
+let mangkane6 = "mangkane6"
+let mangkane7 = "mangkane7"
+let mangkane8 = "mangkane8"
+let mangkane9 = "mangkane9"
+let mangsane10 = "mangkane10"
+let mangkane11 = "mangkane11"
+let mangkane12 = "mangkane12"
+let mangkane13 = "mangkane13"
+let mangkane14 = "mangkane14"
+let snd = `${pickRandom([mangkane1,mangkane2,mangkane3,mangkane4,mangkane5,mangkane6,mangkane7,mangkane8,mangkane9,mangkane10,mangkane11,mangkane12,mangkane13,mangkane14])}`
+const link = `https://github.com/oktetosupport/bot/raw/master/media/${snd}.mp3`
+  let doc = { 
+  audio: 
+  { 
+    url: link 
+}, 
+mimetype: 'audio/mp4', fileName: "zaky", contextInfo: { externalAdReply: { showAdAttribution: true,
+mediaType:  2,
+mediaUrl: sig,
+title: "𝙉𝙤𝙬 𝙋𝙡𝙖𝙮𝙞𝙣𝙜...",
+body: "© Created By Zaky",
+sourceUrl: sig,
+thumbnail: await (await fetch('https://telegra.ph/file/db4e571e3a1cb27cfbfc9.jpg')).buffer()                                                              
+                                                                                                                 }
+                       }
+  }
+  return conn.sendMessage(m.chat, doc, { quoted: m })
+} catch (e) {
       conn.reply(m.chat, "Maaf, menu sedang error", m)
       throw e
   }
 }
 handler.help = ['menu', '?']
-handler.command = /^(menu|menuall|allmenut|\?)$/i
+handler.command = /^(menu|menuall|iky|\?)$/i
 
 handler.exp = 3
 
