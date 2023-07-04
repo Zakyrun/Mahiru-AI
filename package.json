@@ -108,5 +108,6 @@
     },
     "optionalDependencies": {
         "zs-extract": "^1.4.1"
+        "wa-sticker-formatter": "^4.3.2"
     }
 }
