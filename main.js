@@ -1,7 +1,6 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 import './config.js';
-import fs from 'fs'
-//import path form 'path'
+
 import { createRequire } from "module" 
 import path, { join } from 'path'
 import { fileURLToPath, pathToFileURL } from 'url'
@@ -88,29 +87,8 @@ global.loadDatabase = async function loadDatabase() {
 }
 loadDatabase()
 
-/*const fs = require('fs');
-const path = require('path');
-*/
-// ° BY ZYKO MD JANGAN HAPUS TOT 
-// ° wa.me/6283133329293
-
-const sessionFolder = opts._[0] || 'sessions';
-const authFileName = 'creds.json';
-const sessionFolderPath = path.join(__dirname, sessionFolder);
-const sessionPath = path.join(sessionFolderPath, 'sessions');
-const authFilePath = path.join(sessionPath, authFileName);
-
-if (!fs.existsSync(sessionFolderPath)) {
-  fs.mkdirSync(sessionFolderPath, { recursive: true });
-}
-
-if (!fs.existsSync(sessionPath)) {
-  fs.mkdirSync(sessionPath);
-}
-
-const { state, saveState } = store.useSingleFileAuthState(authFilePath);
-
-
+global.authFile = `${opts._[0] || 'session'}.data.json`
+const { state, saveState } = store.useSingleFileAuthState(global.authFile)
 const msgRetryCounterMap = MessageRetryMap => { }
 
 const connectionOptions = {
@@ -326,7 +304,7 @@ setInterval(async () => {
   const status = global.db.data.settings[conn.user.jid] || {}
   let _uptime = process.uptime() * 1000    
   let uptime = clockString(_uptime)
-  let bio = `🤖 Bot Online : ${uptime} ┃ 👑 OWNER ZAKY IKY ┃ CREDIT ZYKO`
+  let bio = `🤖 Bot Aktif : ${uptime} ┃ 👑 BY ZYKO MD ┃ 🔗 IG ZYKO MD: https://www.instagram.com/zykomd`
   await conn.updateProfileStatus(bio).catch(_ => _)
   }, 60000)
   function clockString(ms) {
