@@ -10,12 +10,26 @@ let list = Object.entries(global.db.data.users)
     if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
     else who = m.sender
     let user = global.db.data.users[who]
-    let cap  = `━━━ ❨ *Dompet @${who.split(`@`)[0]}* ❩ ━━━
-
-*🌌 𝑳𝒊𝒎𝒊𝒕 :* ${user.limit}
-*💵 𝑴𝒐𝒏𝒆𝒚 :* ${user.money}
-*✨ 𝑬𝒙𝒑 :* ${user.exp}`
-conn.reply(m.chat, cap, fkontak, { mentions: await conn.parseMention(cap) })
+    let cap  = `*么 - DOMPET* @${who.split(`@`)[0]}
+┌  ◦  *Role:* ${user.role}
+│  ◦  *exp:* ${user.exp}
+│  ◦  *Limit:* ${user.limit}
+│  ◦  *Money:* ${user.money}
+│  ◦  *Bank:* ${user.bank} 
+╰───────···`
+conn.sendMessage(m.chat, {
+    text: cap,
+    contextInfo: {
+      externalAdReply: {
+        title: "Mahiru AI - KY",
+        body: "Ini adalah informasi saldo Anda.",
+        thumbnailUrl: 'https://telegra.ph/file/2cc26e0a05891a5df3f2f.jpg',
+        sourceUrl: sig,
+        mediaType: 1,
+        renderLargerThumbnail: true
+      }
+    }
+  }, { quoted: m });
 }
 handler.help = ['dompet', 'limit']
 handler.tags = ['rpg']

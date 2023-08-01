@@ -1,58 +1,119 @@
-import { youtubeSearch, youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
-let handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw `🚩 Use example ${usedPrefix}${command} naruto blue bird`
-  let vid = (await youtubeSearch(text)).video[0]
-  await conn.sendMessage(m.chat, { react: { text: "⏳",key: m.key,}
-  })  
-  if (!vid) throw 'Tidak di temukan, coba untuk membalikkan judul dan author nya'
-  let { title, description, thumbnail, videoId, durationH, viewH, publishedTime } = vid
-  const url = 'https://www.youtube.com/watch?v=' + videoId
-let vap = `*〔 Y O U T U B E P L A Y 〕*
+/*
+* Nama Pengembang: Sazumi Viki
+* Kontak Whatsapp: wa.me/6285236226786
+* Kontak Telegram: t.me/sazumiviki
+* Akun Github: github.com/SazumiVicky
+* Catatan: tolong laporkan kepada saya ketika anda menemukan ada yang menjual script ini
+*/
 
-𝐓𝐢𝐭𝐥𝐞: ${title}
-𝐔𝐫𝐥: ${url}
-𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐭𝐢𝗼𝐧 ${description}
-𝐏𝐮𝐛𝐥𝐢𝐬𝐡𝐞𝐝: ${publishedTime}
-𝐃𝐮𝐫𝐚𝐭𝐢𝗼𝐧: ${durationH}
-𝐕𝐢𝐞𝐰: ${viewH}
+import ytdl from 'ytdl-core'
+import fs from 'fs'
+import ffmpeg from 'fluent-ffmpeg'
+import search from 'yt-search'
 
-${footer}`
-conn.sendMessage(m.chat, {
-text: vap,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: thumbnail,
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m}) 
-  const yt = await await youtubedlv2(url).catch(async _ => await youtubedl(url)).catch(async _ => await youtubedlv3(url))
-const link = await yt.audio['128kbps'].download()
-  let doc = { 
-  audio: 
-  { 
-    url: link 
-}, 
-mimetype: 'audio/mp4', fileName: `${title}`, contextInfo: { externalAdReply: { showAdAttribution: true,
-mediaType:  2,
-mediaUrl: url,
-title: title,
-body: "© ZYKOBOTZ MD V.1.1 (Public Botz)",
-sourceUrl: url,
-thumbnail: await(await conn.getFile(thumbnail)).data                                                                     
-                                                                                                                 }
-                       }
+let handler = async (m, { conn, text }) => {
+  if (!text) return m.reply('*Example*: .play kill bill');
+
+  conn.sendMessage(m.chat, {
+    react: {
+      text: '🕒',
+      key: m.key,
+    }
+  });
+
+  try {
+    let results = await search(text);
+    let videoId = results.videos[0].videoId;
+    let info = await ytdl.getInfo(videoId);
+    let title = info.videoDetails.title.replace(/[^\w\s]/gi, '');
+    let thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    let url = info.videoDetails.video_url;
+    let duration = parseInt(info.videoDetails.lengthSeconds);
+    let uploadDate = new Date(info.videoDetails.publishDate).toLocaleDateString();
+    let views = info.videoDetails.viewCount;
+    let minutes = Math.floor(duration / 60);
+    let description = results.videos[0].description;
+    let seconds = duration % 60;
+    let durationText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    
+    function formatViews(views) {
+      if (views >= 1000000) {
+        return (views / 1000000).toFixed(1) + 'M';
+      } else if (views >= 1000) {
+        return (views / 1000).toFixed(1) + 'K';
+      } else {
+        return views.toString();
+      }
+    }
+
+    let audio = ytdl(videoId, { quality: 'highestaudio' });
+    let inputFilePath = 'tmp/' + title + '.webm';
+    let outputFilePath = 'tmp/' + title + '.mp3';
+
+    let fileSize = 0;
+    audio.on('data', (chunk) => {
+      fileSize += chunk.length;
+      if (fileSize > 50 * 1024 * 1024) {
+        audio.destroy();
+        fs.unlinkSync(inputFilePath);
+        return m.reply('😅Audio mencapai batas 50MB');
+      }
+    });
+    
+    let viewsFormatted = formatViews(views);
+    let infoText = `
+*${title.toUpperCase()}*
+    
+╭─ •  「 *YOUTUBE PLAY* 」
+│  ◦  *Durasi*: ${durationText}
+│  ◦  *Tanggal Upload*: ${uploadDate}
+│  ◦  *Dilihat*: ${viewsFormatted}
+╰──── •`;
+
+    conn.sendMessage(m.chat, {
+      text: infoText,
+      contextInfo: {
+        externalAdReply: {
+          showAdAttribution: true,
+          title: `${title}`,
+          body: description,
+          thumbnailUrl: thumbnailUrl,
+          mediaUrl: url,
+          sourceUrl: url,
+          mediaType: 2,
+          renderLargerThumbnail: true
+        }
+      }
+    }, { quoted: m });
+
+    audio.pipe(fs.createWriteStream(inputFilePath)).on('finish', async () => {
+      ffmpeg(inputFilePath)
+        .toFormat('mp3')
+        .on('end', async () => {
+          let thumbnailData = await conn.getFile(thumbnailUrl);
+          let buffer = fs.readFileSync(outputFilePath);
+          conn.sendFile(m.chat, buffer, `${title}.mp3`, '', m);
+          fs.unlinkSync(inputFilePath);
+          fs.unlinkSync(outputFilePath);
+        })
+        .on('error', (err) => {
+          console.log(err);
+          m.reply(`🥺Terjadi kesalahan saat mengonversi audio: ${err.message}`);
+          fs.unlinkSync(inputFilePath);
+          fs.unlinkSync(outputFilePath);
+        })
+        .save(outputFilePath);
+    });
+
+  } catch (e) {
+    console.log(e);
+    m.reply(`🥺Terjadi kesalahan saat mencari lagu: ${e.message}`);
   }
-  return conn.sendMessage(m.chat, doc, { quoted: m })
-}
-handler.help = ['play'].map(v => v + ' <pencarian>')
-handler.tags = ['downloader']
-handler.command = /^play$/i
+};
 
-handler.exp = 0
-handler.limit = true
+handler.help = ['play'];
+handler.tags = ['downloader'];
+handler.command = /^play$/i;
+handler.limit = true;
+
 export default handler
-
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
-}

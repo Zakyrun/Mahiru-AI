@@ -1,22 +1,23 @@
-import fetch from 'node-fetch'
-import api from 'api-dylux'
-let handler = async (m, { conn, args, text, usedPrefix, command }) => { 
- if (!args[0]) throw `🚩 *Example:* ${usedPrefix+command} https://vt.tiktok.com/ZS8TQkpTK/`
+import axios from "axios"
+import fetch from "node-fetch"
+import { Tiktokdl } from '../lib/scrape.js'
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+ if (!text) throw `🚩 *Example:* ${usedPrefix+command} https://vt.tiktok.com/ZS8TQkpTK/`
+    await conn.sendMessage(m.chat, { react: { text: "🕚",key: m.key,}})  
+    m.reply(md)
+    let spas = "                "
+    let ler = await Tiktokdl(text)
+    let cer = ler.result
+	let cap = `*「 🅃🄸🄺🅃🄾🄺 」*
 
-let f = await api.tiktok(text)
-await conn.sendMessage(m.chat, { react: { text: "⏳",key: m.key,}
-  })  
-  await m.reply('𝚂𝚊𝚋𝚊𝚛 𝚈𝚊 Kak😇...')
- let cap = `*DOWNLOADER TIKTOK*
- 
- 
-*Nickname :* ${f.nickname}
-*Duration :* ${f.duration}
-*Description :* ${f.description}`
-conn.sendFile(m.chat, f.play, 'ttmp4', cap, m)
-}
-handler.help = ['tiktok', 'tt'].map(v => v + ' <url>')
+*👤ᴀᴜᴛʜᴏʀ:* ${cer.author.nickname}
+*🔖ᴊᴜᴅᴜʟ:* ${cer.desc}
+
+${footer}`
+conn.sendMessage(m.chat, { video: { url: cer.download.nowm }, caption: cap }, { quoted: m})
+};
+handler.help = ['tiktok'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-handler.command = /^(tiktok|tt)$/i
-handler.limit = true
+handler.command = /^(ttdl|tiktok|tiktokdl|tiktokdownload|tt|tiktokvid|ttvid)$/i
+
 export default handler

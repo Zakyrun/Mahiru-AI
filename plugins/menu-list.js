@@ -12,6 +12,7 @@ import moment from "moment-timezone"
 import os from "os"
 import fs from "fs"
 import fetch from "node-fetch"
+import { sticker } from '../lib/sticker.js'
 
 let emot = `${pickRandom(['⎔', '✦', '⭑', 'ᯬ', '⭔', '◉', '⬟', '▢', '᭻', '»', '〆', '々', '⛥', '✗', '⛊', '⚝', '⚚', '♪'])}`
    let tags = {
@@ -59,8 +60,8 @@ let emot = `${pickRandom(['⎔', '✦', '⭑', 'ᯬ', '⭔', '◉', '⬟', '▢'
 }   
 const defaultMenu = {
 before: ` `.trimStart(),
-header: '〆 %category \n',
-body: `${emot} %cmd %isPremium %islimit`,
+header: '乂 %category \n',
+body: `◦ %cmd %isPremium %islimit`,
 footer: '\n',
 after: `${footer}`,
 }
@@ -78,12 +79,6 @@ try {
 //  let name = await conn.getName(who)
   let names = await conn.getName(who)
   let imgr = flaaa.getRandom()
-  await conn.sendMessage(m.chat, {
-      react: {
-          text: "⏳",
-          key: m.key,
-      }
-  })  
 //  let tags
  //  let teks = `${args[0]}`.toLowerCase()
 
@@ -192,7 +187,7 @@ try {
           return {
               help: Array.isArray(plugin.tags) ? plugin.help : [plugin.help],
               tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
-              prefix: "customPrefix" in plugin,
+              prefix: "" in plugin,
               limit: plugin.limit,
               premium: plugin.premium,
               enabled: !plugin.disabled,
@@ -322,76 +317,45 @@ try {
 
 
       //------------------< MENU All>----------------
+let res = await fetch(`https://api.waifu.pics/sfw/neko`)
+	if (!res.ok) throw await res.text()
+	let json = await res.json()
 let all = `
-*ɪᴋʏᴢʏᴋ-ᴍᴅ* ᴀᴅᴀʟᴀʜ ᴘʀᴏɢʀᴀᴍ ʙᴏᴛ ᴡʜᴀᴛꜱᴀᴘᴘ ʏᴀɴɢ ꜱɪᴀᴘ ᴍᴇᴍʙᴀɴᴛᴜ ᴀɴᴅᴀ ᴅᴀʟᴀᴍ ᴍᴇʟᴀᴋᴜᴋᴀɴ ʙᴇʀʙᴀɢᴀɪ ᴛɪɴᴅᴀᴋᴀɴ, ᴍᴇɴᴄᴀʀɪ ᴅᴀᴛᴀ ᴀᴛᴀᴜ ɪɴꜰᴏʀᴍᴀꜱɪ ᴍᴇʟᴀʟᴜɪ ᴡʜᴀᴛꜱᴀᴘᴘ.
-•───────────────────•
-👋🏻 _ʜᴀʟᴏ_ ${name},
-🧿 _*ʟᴇᴠᴇʟ*_ : ${level} 
-👥 _*ᴛᴏᴛᴀʟ ᴜꜱᴇʀ*_ : ${totalreg}
-📈 _*ᴜᴘᴛɪᴍᴇ*_ : ${muptime}
-📁 _*ʙᴀɪʟᴇʏs*_ : Multi Device
-•───────────────────•
-ʜᴀʟᴏ ${name} ᴀᴅᴀ ʏᴀɴɢ ʙɪꜱᴀ ꜱᴀʏᴀ ʙᴀɴᴛᴜ?
-ᴋᴇᴛɪᴋ *.ᴏᴡɴᴇʀ* ᴊɪᴋᴀ ɪɴɢɪɴ ᴍᴇᴍᴀsᴜᴋᴀɴ ʙᴏᴛ ɪɴɪ ᴅɪ ɢᴄ ᴋᴀᴍᴜ, ɪɴɪ ᴀᴅᴀʟᴀʜ ʙᴏᴛ ғʀᴇᴇ ᴍᴀsɪʜ ᴅᴀʟᴀᴍ ᴘᴇʀᴋᴇᴍʙᴀɴɢᴀɴ ᴊᴀᴅɪ ᴍᴀᴋʟᴜᴍɪɴ ᴊɪᴋᴀ ᴀᴅᴀ ʏᴀɴɢ ᴇʀʀᴏʀ😇, ᴛᴇʀɪᴍᴀ ᴋᴀꜱɪʜ
-‧͙⁺˚*･༓☾𝚆𝚊𝚔𝚝𝚞/𝚃𝚊𝚗𝚐𝚐𝚊𝚕☽༓･*˚⁺‧͙
-🄹🄰🄼 🆆🅸🄱 : ${wib}
-🄹🄰🄼 🆆🅸🆃🄰 : ${wita}
-🅃🄰🄽🄶🄶🄰🄻: ${date}
-➷➹➷➹➷➹➷➹➷➹➷➹➷➹
- 🅘🅝🅕🅞 🅒🅜🅓
-     
-*Ⓟ* = 𝙋𝙧𝙚𝙢𝙞𝙪𝙢
-*Ⓛ* = 𝙇𝙞𝙢𝙞𝙩`
+╭─ •  「 *INFO USER* 」
+│  ◦  Nama : *${name}*
+│  ◦  Limit : *${limit}*
+│  ◦  Level : *${level}*
+╰──── •
+
+Jangan lupa daftarkan dirimu di database Mahiru agar Mahiru bisa mengingatmu selama Mahiru masih aktif.
+
+╭─ •  「 *IM MAHIRU AI* 」
+│  ◦  Tanggal : *${date}*
+│  ◦  Database : *${rtotalreg} dari ${totalreg}*
+│  ◦  Platfrom : *${platform}*
+╰──── •
+͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏`
 conn.sendMessage(m.chat, {
-text: all + readMore + '\n\n' + text,
+text: all + readMore + '\n' + text,
 contextInfo: {
 externalAdReply: {
-title: 'ᴢᴀᴋʏ',
-thumbnailUrl: menu,
-sourceUrl: sgc,
+title: 'Mahiru Ai - Iky',
+body: "Runtime: " + muptime,
+thumbnailUrl: 'https://telegra.ph/file/a3997e6f5191d8d0ef43d.jpg',
+sourceUrl: sig,
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
-   
-let mangkane1 = "mangkane1"
-let mangkane2 = "mangkane2"
-let mangkane3 = "mangkane3"
-let mangkane4 = "mangkane4"
-let mangkane5 = "mangkane5"
-let mangkane6 = "mangkane6"
-let mangkane7 = "mangkane7"
-let mangkane8 = "mangkane8"
-let mangkane9 = "mangkane9"
-let mangsane10 = "mangkane10"
-let mangkane11 = "mangkane11"
-let mangkane12 = "mangkane12"
-let mangkane13 = "mangkane13"
-let mangkane14 = "mangkane14"
-let snd = `${pickRandom([mangkane1,mangkane2,mangkane3,mangkane4,mangkane5,mangkane6,mangkane7,mangkane8,mangkane9,mangkane10,mangkane11,mangkane12,mangkane13,mangkane14])}`
-const link = `https://github.com/oktetosupport/bot/raw/master/media/${snd}.mp3`
-  let doc = { 
-  audio: 
-  { 
-    url: link 
-}, 
-mimetype: 'audio/mp4', fileName: "zaky", contextInfo: { externalAdReply: { showAdAttribution: true,
-mediaType:  2,
-mediaUrl: sig,
-title: "𝙉𝙤𝙬 𝙋𝙡𝙖𝙮𝙞𝙣𝙜...",
-body: "© Created By Zaky",
-sourceUrl: sig,
-thumbnail: await (await fetch('https://telegra.ph/file/db4e571e3a1cb27cfbfc9.jpg')).buffer()                                                              
-                                                                                                                 }
-                       }
-  }
-  return conn.sendMessage(m.chat, doc, { quoted: m })
+/*return conn.sendFile(m.chat, link, "ehee.mp3", null, m, true, {
+		type: "audioMessage",
+		ptt: true,*/
 } catch (e) {
       conn.reply(m.chat, "Maaf, menu sedang error", m)
       throw e
   }
 }
-handler.help = ['menu', '?']
-handler.command = /^(menu|menuall|iky|\?)$/i
+handler.help = ['allmenu', '?']
+handler.command = /^(allmenu|\?)$/i
 
 handler.exp = 3
 

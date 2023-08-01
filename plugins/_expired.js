@@ -5,12 +5,12 @@ export async function all(m) {
     if (!chats.expired)
         return !0
     if (+new Date() > chats.expired) {
-        let caption = `🚩 Bye *${this.user.name}* will be left from the group!!`
-    await this.reply(caption)
+        await this.reply(m.chat, 'Masa Sewa Untuk Grup Ini Telah Habis, Waktunya Saya Keluar Dari Group Ini Dan Terima Kasih Telah Menyewa Saya >,<')
         await this.groupLeave(m.chat)
         chats.expired = null
     }
 }
+
 
 /*
 export async function all(m) {
