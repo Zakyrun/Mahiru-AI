@@ -43,7 +43,7 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
 
 global.sig = 'https://instagram.com/zykomd'
 global.sgh = 'https://github.com/Oktetobussines'
-global.sgc = 'https://chat.whatsapp.com/EuRW5GTkIm7Got8ncaiI6X'
+global.sgc = 'https://chat.whatsapp.com/I6cXD41t2It2ZsCWxUHq3K'
 global.sdc = 'https://www.discord.com'
 global.snh = 'https://youtu.be/0I8MBnCuuzs'
 global.sfb = 'https://www.facebook.com/Ayang'
@@ -65,7 +65,7 @@ global.namebot = 'IKYBOT MD'
 global.nameown = 'Ayang Iky'
 
 /*============== Github Thanks To ==============*/
-global.namagithub = 'ZykoBotz-MD'
+global.namagithub = 'IkyBotz-MD'
 global.linkgithub = sgh
 
 /*============== CREATE PANEL ==============*/
@@ -75,16 +75,13 @@ global.c_apikey = ' ' // ISI APIKEY PTLC
 
 /*============== APIKEY SIMPEL ==============*/
 global.zenzkey = pickRandom(["b8040941f7"])
-global.lolkey = pickRandom(["e54205a4ca2caa368cc067bb", "8e66d0934cf741bfd2182c16", "327a6596e4c4baa20c756132", "bukanitucuy14315195", "85faf717d0545d14074659ad", "ed78c137a46873c5b8e5fe3b", "zulfikarbot"])
+global.lolkey = pickRandom(["ayakaviki"])
 
 
 /*============== STAFF ==============*/
 global.owner = [
-  ['+6282289304381', 'Ayang🖤', true],
-  ['+6282289304381', 'Ayang', true],
-  ['082289304381', 'zaky', true],
-  ['-', 'ISI KALAU ADA', true],
-  ['-', 'ISI KALAU ADA', true]
+  ['6282289304381', 'Ky Owner', true]
+  ['6283865775691', 'Sarah', true]
 ]
 global.mods = [] 
 global.prems = [] 
@@ -108,18 +105,19 @@ global.APIs = {
   xcdr: "https://wudysoft.up.railway.app",
   zeks: "https://api.zeks.xyz",
   zenz: "https://api.zahwazein.xyz",
+  popcat: 'https://api.popcat.xyz',
   btchx: "https://api.botcahx.biz.id",
   males : 'https://malesin.xyz'
   
 }
 global.APIKeys = { 
-  'https://api.lolhuman.xyz': 'e54205a4ca2caa368cc067bb',
+  'https://api.lolhuman.xyz': 'ayakaviki',
   'https://api.zeks.me': 'apivinz',
   'https://pencarikode.xyz': 'pais',
   'https://melcanz.com': 'melcantik',
   'https://hardianto.xyz': 'hardianto',
   "https://api.neoxr.my.id": "5VC9rvNx",
-  "https://api.xteam.xyz": "HIRO",
+  "https://api.xteam.xyz": "d37372311698ed1d",
   "https://api.zeks.xyz": "apivinz",
   "https://wudysoft.up.railway.app": "Lann",
   "https://api.zahwazein.xyz": "LuOlangNgentot",
@@ -130,15 +128,15 @@ global.APIKeys = {
 // The word APIKEY is filled with your own apikey, by buying it on the website
 
 /*============== WATERMARK ==============*/
-global.wm = '                「 IKY BOT 」'
-global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘ANIMEBOTZ MD ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
-global.wm3 = "⫹⫺ ANIMEBOTZ MD"
-global.botdate = `⫹⫺ DATE: ${week} ${date}\n⫹⫺ TIME: ${wktuwib}`
+global.wm = '                「⻝ MAHIRU AI - KY 」'
+global.wm2 = '꒷︶꒷꒥꒷ ‧₊˚ ꒰ฅ˘MAHIRU AI - KY ˘ฅ ꒱ ‧₊˚꒷︶꒷꒥꒷'
+global.wm3 = "MAHIRU AI"
+global.botdate = `⻝ Tanggal: ${week} ${date}\n⻝ Waktu: ${wktuwib}`
 global.bottime = `T I M E : ${wktuwib}`
-global.titlebot = `⫹⫺ WhatsApp Bot | By Iky`
+global.titlebot = `⻝ WhatsApp Bot | MAHIRU AI - KY`
 global.packname = '☂︎ ᴄʀᴇᴀᴛᴇᴅ ʙʏ'
-global.author = "IKY ZAKY 乂 ANIMEBOTZ MD"
-global.footer = 'ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ http://ī.am/𝘻𝘢𝘬𝘺𝘪𝘬𝘺 ッ http://ī.am/𝘪𝘬𝘺𝘣𝘰𝘵'
+global.author = "IKY ZAKY 乂 MAHIRU AI"
+global.footer = 'ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴍᴀᴅᴇ ʙʏ ᴢᴀᴋʏ - ᴍᴀʜɪʀᴜ ᴀɪ'
 /*Fake*/
 global.fsizedoc = SizeDoc()
 global.fpagedoc = PageDoc()
@@ -154,8 +152,8 @@ global.giflogo = VideoGalau()
 global.thumbs = ImgBoneka()
 global.donasi = 'https://telegra.ph/file/980b183cc268c2991bdd3.jpg'
 global.pilihan = 'https://telegra.ph/file/360dadafde8dcaee530aa.jpg'
-global.menu = 'https://telegra.ph/file/64343ab248322a44fb340.jpg'
-global.zykomd = 'https://telegra.ph/file/9d7c2bcdb29eadec4c71d.jpg'
+global.menu = 'https://telegra.ph/file/bca0dde72a05331206581.jpg'
+global.zykomd = 'https://p4.wallpaperbetter.com/wallpaper/745/67/618/jujutsu-kaisen-anime-boys-anime-hd-wallpaper-preview.jpg'
 global.fla = 'https://telegra.ph/file/9cc48b21c6eda65133682.jpg'
 global.brocas = "https://telegra.ph/file/383e588591ee366c20f53.jpg"
 global.thumbnailUrl = ImgBoneka()
