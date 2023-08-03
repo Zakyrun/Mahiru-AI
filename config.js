@@ -81,7 +81,6 @@ global.lolkey = pickRandom(["ayakaviki"])
 /*============== STAFF ==============*/
 global.owner = [
   ['6282289304381', 'Ky Owner', true]
-  ['6283865775691', 'Sarah', true]
 ]
 global.mods = [] 
 global.prems = [] 
