@@ -26,7 +26,7 @@ global.v = `© KY AI V${res.version} (Ai Botz)`
 global.api = "Zyko"
 global.ucapan = ucapan()
 global.ephemeral = '86400'
-global.fakeig = {
+global.adReply = {
 contextInfo: {
 forwardingScore: 9999,
 externalAdReply: { 
@@ -41,7 +41,7 @@ sourceUrl: "https://instagram.com/zzyko_04",
 }
 }
 }
-global.adReply = {
+global.fakeig = {
 contextInfo: {
 externalAdReply: {
 showAdAttribution: true,
