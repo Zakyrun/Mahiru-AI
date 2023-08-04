@@ -12,7 +12,7 @@ export async function before(m, { match, text, usedPrefix, command }) {
 		let som = sim * 100
 		let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 		let name = await conn.getName(who)
-		let caption = `🚩 The command you are using is wrong, try the following recommendations :\n\n➠ *${usedPrefix + mean}* *(${Number(sim * 100).toFixed(2)}%)*`
+		let caption = `Command Yang kamu berikan Salah, apakah benar kamu sedang mencari ini?:\n\n➠ *${usedPrefix + mean}* *(${Number(sim * 100).toFixed(2)}%)*`
 	if (mean) this.reply(m.chat, caption, m, { mentions: this.parseMention(caption) })
 	}
 }

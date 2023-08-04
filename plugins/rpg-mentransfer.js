@@ -3,7 +3,7 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
         return conn.reply(m.chat, `Gunakan format .mentransfer <type> <jumlah> <@tag>\n📍contoh penggunaan: *.mentransfer money 100 @tag*\n\n*List yang bisa di transfer :*\n💹Money\n💳 Tabungan\n🥤Potion\n🗑️Sampah\n💎Diamond\n📦Common\n🛍️Uncommon\n🎁Mythic\n🧰Legendary\n🕸️string\n🪵kayu\n🪨batu\n⛓iron`.trim(), m)
     } else try {
         let type = (args[0] || '').toLowerCase()
-        let count = args[1] && args[1].length > 0 ? Math.min(9999999, Math.max(parseInt(args[1]), 1)) : Math.min(1)
+        let count = args[1] && args[1].length > 0 ? Math.min(9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999, Math.max(parseInt(args[1]), 1)) : Math.min(1)
         let who = m.mentionedJid ? m.mentionedJid[0] : (args[2].replace(/[@ .+-]/g, '').replace(' ', '') + '@s.whatsapp.net')
         if(!m.mentionedJid || !args[2]) throw 'Tag salah satu, atau ketik Nomernya!!'
         let users = global.db.data.users
@@ -276,7 +276,7 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
     
 handler.help = ['mentransfer <Args>']
 handler.tags = ['rpg']
-handler.command = /^(mentransfer|mentf)$/i
+handler.command = /^(mentransfer|mentf|tf)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
