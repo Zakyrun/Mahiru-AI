@@ -1343,7 +1343,7 @@ export async function participantsUpdate({ id, participants, action }) {
                 for (let user of participants) {
                 let welc = 'WELCOME'
                     let outss = 'GOOD BYE'
-                    let pp = 'https://telegra.ph/file/2d06f0936842064f6b3bb.png'
+                    let pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
                     } catch (e) {
@@ -1351,17 +1351,17 @@ export async function participantsUpdate({ id, participants, action }) {
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
                             (chat.sBye || this.bye || conn.bye || 'Bye @user')).replace(/@user/g, '@' + user.split`@`[0])
 let wel = API('popcat', '/welcomecard', {
-                                background: 'https://telegra.ph/file/2a73c6df09b9d47263e0f.jpg',
+                                background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
                                 text1: welc,
                                 text2: await this.getName(user),
-                                text3: 'TotalMember: ' + groupMetadata.participants.length, 
+                                text3: groupMetadata.participants.length, 
                                 avatar: pp,
                             })
                             let lea = API('popcat', '/welcomecard', {
-                                background: 'https://telegra.ph/file/2a73c6df09b9d47263e0f.jpg',
+                                background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
                                 text1: outss,
                                 text2: await this.getName(user),
-                                text3: 'TotalMember: ' + groupMetadata.participants.length,
+                                text3: groupMetadata.participants.length,
                                 avatar: pp,
                             })
 
@@ -1416,7 +1416,7 @@ text: `🚩 Detected *@${participant.split`@`[0]}* has deleted the message.`,
 contextInfo: {
 externalAdReply: {
 title: v,
-thumbnailUrl: "https://telegra.ph/file/9df3a76790e5ebda9dd05.jpg",
+thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
 sourceUrl: sgc,
 mediaType: 1,
 renderLargerThumbnail: true
@@ -1447,7 +1447,7 @@ text: msg,
 contextInfo: {
 externalAdReply: {
 title: v,
-thumbnailUrl: "https://telegra.ph/file/9df3a76790e5ebda9dd05.jpg",
+thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
 sourceUrl: sgc,
 mediaType: 1,
 renderLargerThumbnail: true
@@ -1460,7 +1460,7 @@ text: msgg,
 contextInfo: {
 externalAdReply: {
 title: v,
-thumbnailUrl: "https://telegra.ph/file/9df3a76790e5ebda9dd05.jpg",
+thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
 sourceUrl: sgc,
 mediaType: 1,
 renderLargerThumbnail: true
