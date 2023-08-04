@@ -1350,7 +1350,13 @@ export async function participantsUpdate({ id, participants, action }) {
                     } finally {
                         text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
                             (chat.sBye || this.bye || conn.bye || 'Bye @user')).replace(/@user/g, '@' + user.split`@`[0])
-let wel = `https://api.lolhuman.xyz/api/base/welcome?apikey=tegar&img1=${pp}&img2=${pp}&background=https://i.ibb.co/8B6Q84n/LTqHsfYS.jpg&username=${name}&member=${participants.length}&groupname=${groupMetadata.subject}`
+let wel = API('popcat', '/welcomecard', {
+                                background: 'https://telegra.ph/file/2a73c6df09b9d47263e0f.jpg',
+                                text1: welc,
+                                text2: await this.getName(user),
+                                text3: 'TotalMember: ' + groupMetadata.participants.length, 
+                                avatar: pp,
+                            })
                             let lea = API('popcat', '/welcomecard', {
                                 background: 'https://telegra.ph/file/2a73c6df09b9d47263e0f.jpg',
                                 text1: outss,
