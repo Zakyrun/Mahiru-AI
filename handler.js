@@ -922,7 +922,7 @@ export async function handler(chatUpdate) {
                 if (!('simi' in chat))
                     chat.simi = false
                 if (!('autoread' in chat)) 
-                    chat.autoread = false
+                    chat.autoread = true
                 if (!('nsfw' in chat))
                     chat.nsfw = false
                 if (!('premnsfw' in chat))
@@ -949,7 +949,7 @@ export async function handler(chatUpdate) {
 	                antiToxic: false,
 	                anticall: false,
                     welcome: true,
-                    autoread: false,
+                    autoread: true,
                     detect: false,
                     sWelcome: '',
                     sBye: '',
@@ -1341,8 +1341,10 @@ export async function participantsUpdate({ id, participants, action }) {
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                let welc = 'WELCOME'
-                    let outss = 'GOOD BYE'
+                let kykosong2 = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
+                let kykosong = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
+                let welc = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
+                    let outss = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
                     let pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
@@ -1354,14 +1356,14 @@ let wel = API('popcat', '/welcomecard', {
                                 background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
                                 text1: welc,
                                 text2: await this.getName(user),
-                                text3: groupMetadata.participants.length, 
+                                text3: kykosong2, 
                                 avatar: pp,
                             })
                             let lea = API('popcat', '/welcomecard', {
                                 background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
                                 text1: outss,
                                 text2: await this.getName(user),
-                                text3: groupMetadata.participants.length,
+                                text3: kykosong,
                                 avatar: pp,
                             })
 
@@ -1411,33 +1413,39 @@ export async function deleteUpdate(message) {
         let chat = global.db.data.chats[msg.chat] || {}
         if (chat.delete)
             return
-conn.sendMessage(msg.chat, {
-text: `🚩 Detected *@${participant.split`@`[0]}* has deleted the message.`,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
-sourceUrl: sgc,
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: msg}) 
-        this.copyNForward(msg.chat, msg, false).catch(e => console.log(e, msg))
+ await this.reply(msg.chat, `
+Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
+Untuk mematikan fitur ini, ketik
+*.enable delete*
+`.trim(), msg, {
+            mentions: [participant]
+        })
+        this.copyNForward(msg.chat, msg).catch(e => console.log(e, msg))
     } catch (e) {
         console.error(e)
     }
 }
 
 global.dfail = (type, m, conn) => {
-
-let msg = {
-    rowner: `🚩 Sorry, this command can only be used by *OWNER* bots!`,
-    owner: `🚩 Sorry, this command is only for *Owner Bot*!`,
-    mods: `🚩 Sorry, only *Moderators* can use this command!`,
-    premium: `🚩 Only *Premium* members can use this command!\n\nBuy prem by typing .premium`,
-    group: `🚩 Sorry, this command can only be used within a group!`,
-    private: `🚩 This command can only be used in Private Chats!`,
-    admin: `🚩 Sorry, this command is only for group *Admins*!`,
-    botAdmin: `🚩 Make bot *Admin* to use this command!`,
+let tag = `@${m.sender.replace(/@.+/, '')}`
+let mentionedJid = [m.sender]
+let name = conn.getName(m.sender)
+let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+let vn = "./mp3/lusiapa.mp3"
+let mssg = {
+    rowner: `🔒 ᴍᴀᴀғ, ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ *ᴏᴡɴᴇʀ*!`,
+    owner: `🔒 ᴍᴀᴀғ, ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ *ᴏᴡɴᴇʀ*!`,
+    mods: `🛡 ᴍᴀᴀғ, ʜᴀɴʏᴀ *ᴍᴏᴅᴇʀᴀᴛᴏʀ* ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ ɪɴɪ!`}[type]
+        if (mssg) return conn.sendFile(m.chat, vn, "owner.mp3", null, m, true, {
+		type: "audioMessage",
+		ptt: true,
+	})
+let msg = {	
+    premium: `🔓 ʜᴀʏ ᴋᴀᴋ ғɪᴛᴜʀ ɪɴɪ ᴘʀᴇᴍɪᴜᴍ ᴋᴀᴍᴜ ʙɪsᴀ ᴍᴇᴍɪɴᴛᴀ ᴋᴇᴘᴀᴅᴀ ᴏᴡɴᴇʀ/ᴊᴏɪɴ ɢᴄ ʙᴏᴛ ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ ᴀᴋsᴇs ɢʀᴀᴛɪs`,
+    group: `👥 ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴀᴋsᴇs ᴅɪɢʀᴏᴜᴘ sᴀᴊᴀ!`,
+    private: `👤 ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴀᴋsᴇs ᴅɪ ᴘʀɪᴠᴀᴛᴇ/ᴘᴄ!`,
+    admin: `🥱 ᴍᴀᴀғ, ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴀᴅᴍɪɴ sᴀᴊᴀ!\nʟᴜ ɢᴀʙᴏʟᴇʜ ᴋᴀʀᴇɴᴀ ʟᴜ ʙᴜᴋᴀɴ ᴀᴅᴍɪɴ🖕`,
+    botAdmin: `😑ᴊᴀᴅɪᴋᴀɴ ʙᴏᴛ ᴀᴛᴍɪɴ ᴅᴜʟᴜ`,
     nsfw: `🚩 Sorry, the NSFW feature is not active at this time. Please contact Team Bot Discussion to activate this feature!`,
     rpg: `🚩 Sorry, the RPG feature is not active at this time. Please contact Team Bot Discussion to activate this feature!`,
     restrict: `🚩 Sorry, this feature is *disabled*!`
@@ -1448,19 +1456,19 @@ contextInfo: {
 externalAdReply: {
 title: v,
 thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
-sourceUrl: sgc,
+sourceUrl: sig,
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
 let msgg = {
-    unreg: `*「 🚩 DAFTAR 」*\n\n📝 Please register to the database first to use this bot further. Use the following command:\n👉 .register yourname.age\n👤 Example: .register zyko.18`
+    unreg: `_*❑ 𝙳 𝙰 𝙵 𝚃 𝙰 𝚁*_\n\n🛡ᴜɴᴛᴜᴋ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ғɪᴛᴜʀ ɪɴɪ ᴀɴᴅᴀ ʜᴀʀᴜs ʀᴇɢɪsᴛᴇʀ ᴛᴇʀʟᴇʙɪʜ ᴅᴀʜᴜʟᴜ\nᴄᴏɴᴛᴏʜ: *.register nama.umur*`
 }[type]
 if (msgg) return conn.sendMessage(m.sender, {
 text: msgg,
 contextInfo: {
 externalAdReply: {
 title: v,
-thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
+thumbnailUrl: "https://telegra.ph/file/3ef81494cd6ac9de03409.jpg",
 sourceUrl: sgc,
 mediaType: 1,
 renderLargerThumbnail: true

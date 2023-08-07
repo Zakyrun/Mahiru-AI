@@ -176,13 +176,10 @@ async function connectionUpdate(update) {
   if (connection == 'close') {
     console.log(chalk.yellow(`🚩ㅤConnection closed, if the bot doesn't respond, delete the ${global.authFolder} folder/file and re-scan the QR code`))}
   if (update.receivedPendingNotifications) {
-  const deviceName = os.hostname();
   const message = `• *Info*: MAHIRU AI SUDAH TERSAMBUNG!
-◦ *Os*: ${os.platform()} ${os.release()}
-◦ *Device*: ${deviceName}
-◦ *Connected time*: ${new Date().toLocaleString()}`;
+◦ *Os*: ${os.platform()} ${os.release()}`
 
-  conn.sendMessage(`120363143233426612@g.us`, {
+  conn.sendMessage(`6282289304381`, {
     text: message,
     contextInfo: {
       externalAdReply: {
@@ -226,8 +223,8 @@ global.reloadHandler = async function (restatConn) {
     conn.ev.off('connection.update', conn.connectionUpdate)
     conn.ev.off('creds.update', conn.credsUpdate)
   }
-  conn.welcome = '*WELCOME* @user\n\nhappy joining the group @subject' 
-  conn.bye = '*G O O D B Y E*  @user'
+  conn.welcome = '*❑ W E L C O M E*\n\nName *➠ @user*\nGroup *➠ @subject*' 
+  conn.bye = '*❑ L E A V E*\n\nName *➠ @user*\n*sᴇᴍᴏɢᴀ ᴛᴇɴᴀɴɢ ᴅɪ ᴀʟᴀᴍ sᴀɴᴀ*\n'
   conn.spromote = '*@user* Sekarang jadi admin!'
   conn.sdemote = '*@user* Sekarang bukan lagi admin!'
   conn.sDesc = 'Deskripsi telah diubah menjadi \n@desc'
@@ -348,7 +345,7 @@ setInterval(async () => {
   const status = global.db.data.settings[conn.user.jid] || {}
   let _uptime = process.uptime() * 1000    
   let uptime = clockString(_uptime)
-  let bio = `🤖 Bot Aktif : ${uptime}`
+  let bio = `🤖 Mahiru Aktif : ${uptime}`
   await conn.updateProfileStatus(bio).catch(_ => _)
   }, 60000)
   function clockString(ms) {
