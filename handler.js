@@ -1341,10 +1341,12 @@ export async function participantsUpdate({ id, participants, action }) {
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
+                let joinedd = '+1'
+                let outt = '-1'
                 let kykosong2 = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
                 let kykosong = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
-                let welc = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
-                    let outss = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
+                let welc = 'Welcome'
+                let outss = 'Sayonara'
                     let pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
@@ -1356,14 +1358,14 @@ let wel = API('popcat', '/welcomecard', {
                                 background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
                                 text1: welc,
                                 text2: await this.getName(user),
-                                text3: kykosong2, 
+                                text3: joinedd, 
                                 avatar: pp,
                             })
                             let lea = API('popcat', '/welcomecard', {
                                 background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
                                 text1: outss,
                                 text2: await this.getName(user),
-                                text3: kykosong,
+                                text3: outt,
                                 avatar: pp,
                             })
 
