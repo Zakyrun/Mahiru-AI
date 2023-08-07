@@ -1,66 +1,62 @@
+/* Owner: Sazumi Viki */
+/* Asisten: Ayaka Ai */
+/* Instagram: @moe.sazumiviki */
+/* Facebook: Sazumi Viki */
+/* Github: SazumiVicky */
+/* Buy Sc Update: +6285236226786 */
+/* Source Code: https://github.com/SazumiVicky/AyakaV2 */
+
+
 import { createHash } from 'crypto'
 import fetch from 'node-fetch'
-let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
+let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i;
+let handler = async function(m, {
+	text,
+	usedPrefix
+}) {
+	let user = global.db.data.users[m.sender];
+	if (user.registered === true) throw `𝙺𝚊𝚖𝚞 𝚜𝚞𝚍𝚊𝚑 𝚖𝚎𝚗𝚍𝚊𝚏𝚝𝚊𝚛\n𝚊𝚙𝚊 𝚒𝚗𝚐𝚒𝚗 𝚖𝚎𝚗𝚍𝚊𝚏𝚝𝚊𝚛 𝚞𝚕𝚊𝚗𝚐? ${usedPrefix}unreg 90259a21exxxxxx`;
+	if (!Reg.test(text)) throw `ᴋᴀʏᴀᴋ ɢɪɴɪ ʏᴀ ᴋᴀᴋ ᴄᴏɴᴛᴏʜ:\n*${usedPrefix}register zaky.18*`;
+	let [_, name, splitter, age] = text.match(Reg);
+	if (!name) throw 'Namanya mana bnjir (Alphanumeric)';
+	if (!age) throw 'Umurnya mana aelah (Numeric)';
+	age = parseInt(age);
+	if (age > 120) throw 'Serius Lah Pantek.';
+	if (age < 5) throw 'Bocil Asu.';
+	user.name = name.trim();
+	user.age = age;
+	user.regTime = +new Date();
+	user.registered = true;
+	let sn = createHash('md5').update(m.sender).digest('hex');
 
-let handler = async function (m, { text, usedPrefix, command }) {
-function pickRandom(list) {
-  return list[Math.floor(Math.random() * list.length)]
+	let balanceBonus = getRandomInt(1000, 10000);
+	let limitBonus = getRandomInt(10, 20);
+	let expBonus = getRandomInt(1000, 1000);
+
+	m.reply(
+		`
+*❑ ᴘᴇɴᴅᴀғᴛᴀʀᴀɴ sᴜᴋsᴇs!*
+
+╭─「 ɪɴғᴏ 」
+│ *ɴᴀᴍᴀ:* ${name}
+│ *ᴜᴍᴜʀ:* ${age}
+│ *ᴍᴏɴᴇʏ:* +${balanceBonus}
+│ *ʟɪᴍɪᴛ:* +${limitBonus}
+│ *ᴇxᴘ:* +${expBonus}
+│ *sɴ:* ${sn}
+╰────•
+    `
+	);
+};
+
+handler.help = ['register', 'daftar'].map((v) => v + ' <name>.<age>');
+handler.tags = ['start'];
+handler.command = /^(register|daftar)$/i;
+
+module.exports = handler;
+
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-let namae = conn.getName(m.sender)
-let md = `
-╔══✪〘 𝟏𝐒𝐓 𝐑𝐄𝐆𝐈𝐒𝐓𝐑𝐀𝐓𝐈𝐎𝐍 〙✪══
-║
-║Hai ${namae}, untuk mendaftar silahkan gunakan perintah ${usedPrefix}${command} namaAnda.umur
-║Contoh: ${usedPrefix}${command} ZYKO.18
-║
-╚═〘 𝐙𝐘𝐊𝐎𝐁𝐎𝐓𝐙 〙`
-
-  let user = global.db.data.users[m.sender]
-  if (user.registered === true) throw `[💬] Kamu sudah terdaftar\nMau daftar ulang? *${usedPrefix}unreg <SERIAL NUMBER>*`
-  if (!Reg.test(text)) return conn.sendMessage(m.chat, {
-text: md,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: "https://telegra.ph/file/975b07343239240e5a0be.jpg",
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m}) 
-  let [_, name, splitter, age] = text.match(Reg)
-  if (!name) throw 'Nama tidak boleh kosong (Alphanumeric)'
-  if (!age) throw 'Umur tidak boleh kosong (Angka)'
-  age = parseInt(age)
-  if (age > 30) throw 'WOI TUA (。-`ω´-)'
-  if (age < 5) throw 'Halah dasar bocil'
-  user.name = name.trim()
-  user.age = age
-  user.regTime = + new Date
-  user.registered = true
-  let sn = createHash('md5').update(m.sender).digest('hex')
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.fromMe ? conn.user.jid : m.sender
-  let caption = `
-  ╔══✪〘 𝟏𝐒𝐓 𝐑𝐄𝐆𝐈𝐒𝐓𝐑𝐀𝐓𝐈𝐎𝐍 〙✪══
-  ║
-  ║ *Successful Registration!*
-  ║
-  ║Nama: ${name}
-  ║Umur: ${age} tahun
-  ║SN: ${sn}
-  ║
-  ╚═〘 𝐙𝐘𝐊𝐎𝐁𝐎𝐓𝐙 〙`  
-conn.sendMessage(m.chat, {
-text: caption,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: "https://telegra.ph/file/975b07343239240e5a0be.jpg",
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m}) 
-}
-handler.help = ['daftar', 'register'].map(v => v + ' <nama>.<umur>')
-handler.tags = ['xp']
-
-handler.command = /^(daftar|verify|reg(ister)?)$/i
-
-export default handler

@@ -15,14 +15,9 @@ export async function before(m, { isAdmin, isBotAdmin }) {
 		type: "audioMessage",
 		ptt: true,
 	})
-if (isBotAdmin && chat.antiToxic) {
-            await conn.sendMessage(m.chat, { delete: m.key })
-            return !1
-        } else if (!chat.antiToxic) {
-             await conn.sendMessage(m.chat, { delete: m.key })
+if (isBotAdmin && bot.restrict) {
+    return this.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})
         } else if (!bot.restrict) return m.reply('Semoga harimu suram!')
     }
     return !0
 }
-
-export const disable = true

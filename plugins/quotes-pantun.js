@@ -1,5 +1,3 @@
-
-
 import fs from 'fs'
 import moment from 'moment-timezone'
 
@@ -7,14 +5,13 @@ let handler = async (m, { conn, usedPrefix, __dirname, text, command }) => {
 let tag = `@${m.sender.replace(/@.+/, '')}`
   let mentionedJid = [m.sender]
 let name = conn.getName(m.sender)
-
-let cin = `${pickRandom(global.bacot)}`
-let nth = '❲ *Pᴀɴᴛᴜɴ* ❳'
+let cin = `${pickRandom(global.pantun)}`
 m.reply(cin)
 }
 handler.help = ['pantun']
 handler.tags = ['quotes']
 handler.command = /^(pantun)$/i
+handler.limit = true
 export default handler
 
 function ucapan() {
@@ -42,7 +39,7 @@ function pickRandom(list) {
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
-global.bacot = [
+global.pantun = [
 'Ada anak kecil bermain batu,\nBatu dilempar masuk ke sumur,\nBelajar itu tak kenal waktu,\nJuga tidak memandang umur. ',
 'Tanam kacang di pagi hari,\nTumbuh enam layu sebatang,\nKeburukan orang jangan dicari,\nBila kalian sedang puasa. ',
 'Akhir bulan mendapat gaji,\nGaji untuk membeli ketupat,\nRajin-rajinlah sholat dan mengaji,\nJanganlah lupa puasa dan zakat. ',

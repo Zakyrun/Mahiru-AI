@@ -1,7 +1,6 @@
-
 // let pajak = 0.02
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-let dapat = (Math.floor(Math.random() * 100000))
+let dapat = (Math.floor(Math.random() * 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000))
 let nomors = m.sender
   let who
   if (m.isGroup) who = m.mentionedJid[0]
@@ -9,11 +8,11 @@ let nomors = m.sender
   if (!who) throw 'Tag salah satu lah'
   if (typeof db.data.users[who] == 'undefined') throw 'Pengguna tidak ada didalam data base'
   let __timers = (new Date - global.db.data.users[m.sender].lastrob)
-  let _timers = (3600000 - __timers) 
+  let _timers = (1000 - __timers) 
   let timers = clockString(_timers)
   let users = global.db.data.users
-  if (new Date - global.db.data.users[m.sender].lastrob > 3600000){
-  if (10000 > users[who].money) throw 'ᴛᴀʀɢᴇᴛ ɢᴀᴀᴅᴀ 💰ᴜᴀɴɢ ʙᴏᴅᴏʜ, ᴋɪꜱᴍɪɴ ᴅɪᴀ'
+  if (new Date - global.db.data.users[m.sender].lastrob > 1000){
+  if (1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 > users[who].money) throw 'ᴛᴀʀɢᴇᴛ ɢᴀᴀᴅᴀ 💰ᴜᴀɴɢ ʙᴏᴅᴏʜ, ᴋɪꜱᴍɪɴ ᴅɪᴀ'
   users[who].money -= dapat * 1
   users[m.sender].money += dapat * 1
   global.db.data.users[m.sender].lastrob = new Date * 1
@@ -23,8 +22,7 @@ let nomors = m.sender
 }
 handler.help = ['merampok *@tag*']
 handler.tags = ['rpg']
-handler.command = /^merampok|rob$/
-handler.limit = true
+handler.command = /^merampok|curi|colong$/
 handler.group = true
 
 export default handler
