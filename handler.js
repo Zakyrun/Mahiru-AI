@@ -1000,7 +1000,7 @@ export async function handler(chatUpdate) {
             if (typeof settings !== "object") global.db.data.settings[this.user.jid] = {}
             if (settings) {
                 if (!("self" in settings)) settings.self = false
-                if (!("autoread" in settings)) settings.autoread = true
+                if (!("autoread" in settings)) settings.autoread = false
                 if (!("restrict" in settings)) settings.restrict = false
                 if (!("jadibot" in settings)) settings.jadibot = false
                 if (!("autorestart" in settings)) settings.autorestart = true
@@ -1009,7 +1009,7 @@ export async function handler(chatUpdate) {
              
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
-                autoread: true,
+                autoread: false,
                 jadibot: false,
                 restrict: false,
                 autorestart: true,
@@ -1434,15 +1434,10 @@ let mentionedJid = [m.sender]
 let name = conn.getName(m.sender)
 let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 let vn = "./mp3/lusiapa.mp3"
-let mssg = {
+let msg = {
     rowner: `🔒 ᴍᴀᴀғ, ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ *ᴏᴡɴᴇʀ*!`,
     owner: `🔒 ᴍᴀᴀғ, ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ *ᴏᴡɴᴇʀ*!`,
-    mods: `🛡 ᴍᴀᴀғ, ʜᴀɴʏᴀ *ᴍᴏᴅᴇʀᴀᴛᴏʀ* ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ ɪɴɪ!`,}[type]
-        if (mssg) return conn.sendFile(m.chat, vn, "owner.mp3", null, m, true, {
-		type: "audioMessage",
-		ptt: true,
-	})
-let msg = {	
+    mods: `🛡 ᴍᴀᴀғ, ʜᴀɴʏᴀ *ᴍᴏᴅᴇʀᴀᴛᴏʀ* ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ ɪɴɪ!`,
     premium: `🔓 ʜᴀʏ ᴋᴀᴋ ғɪᴛᴜʀ ɪɴɪ ᴘʀᴇᴍɪᴜᴍ ᴋᴀᴍᴜ ʙɪsᴀ ᴍᴇᴍɪɴᴛᴀ ᴋᴇᴘᴀᴅᴀ ᴏᴡɴᴇʀ/ᴊᴏɪɴ ɢᴄ ʙᴏᴛ ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ ᴀᴋsᴇs ɢʀᴀᴛɪs`,
     group: `👥 ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴀᴋsᴇs ᴅɪɢʀᴏᴜᴘ sᴀᴊᴀ!`,
     private: `👤 ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴀᴋsᴇs ᴅɪ ᴘʀɪᴠᴀᴛᴇ/ᴘᴄ!`,
@@ -1456,12 +1451,12 @@ if (msg) return conn.sendMessage(m.chat, {
 text: msg,
 contextInfo: {
 externalAdReply: {
-title: "MAHIRU-AI",
+title: "AKSES KAMU DITOLAK",
 thumbnailUrl: "https://telegra.ph/file/03880784ee60f8e164db6.jpg",
 sourceUrl: ' ',
 mediaType: 1,
 renderLargerThumbnail: true
-}}}, { quoted: m})
+}}}, { quoted: fkon})
 let msgg = {
     unreg: `_*❑ 𝙳 𝙰 𝙵 𝚃 𝙰 𝚁*_\n\n🛡ᴜɴᴛᴜᴋ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ғɪᴛᴜʀ ɪɴɪ ᴀɴᴅᴀ ʜᴀʀᴜs ʀᴇɢɪsᴛᴇʀ ᴛᴇʀʟᴇʙɪʜ ᴅᴀʜᴜʟᴜ\nᴄᴏɴᴛᴏʜ: *.register nama.umur*`
 }[type]
