@@ -2,10 +2,10 @@ let handler = async (m, {
 	conn
 }) => {
 	let __timers = (new Date - global.db.data.users[m.sender].lastberbru)
-	let _timers = (500000 - __timers)
+	let _timers = (3000 - __timers)
 	let timers = clockString(_timers)
 	let user = global.db.data.users[m.sender]
-	if (new Date - global.db.data.users[m.sender].lastlont > 500000) {
+	if (new Date - global.db.data.users[m.sender].lastlont > 3000) {
 		let hsl = `Kamu Terbaring Lemas Karna Melakukan Skidipapap 24 Jam Tetapi Kamu Mendapatkan:
 Uang: Rp.300000
 Exp: 10000

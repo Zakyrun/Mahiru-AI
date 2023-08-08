@@ -53,7 +53,7 @@ handler.help = ['register', 'daftar'].map((v) => v + ' <name>.<age>');
 handler.tags = ['start'];
 handler.command = /^(register|daftar)$/i;
 
-module.exports = handler;
+export default handler
 
 function getRandomInt(min, max) {
 	min = Math.ceil(min);
