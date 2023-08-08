@@ -1429,16 +1429,6 @@ Untuk mematikan fitur ini, ketik
 }
 
 global.dfail = (type, m, conn) => {
-let _uptime = process.uptime() * 1000
-      let _muptime
-      if (process.send) {
-          process.send("uptime")
-          _muptime = await new Promise(resolve => {
-              process.once("message", resolve)
-              setTimeout(resolve, 1000)
-          }) * 1000
-      }
-      let muptime = clockString(_muptime)
 let tag = `@${m.sender.replace(/@.+/, '')}`
 let mentionedJid = [m.sender]
 let name = conn.getName(m.sender)
@@ -1449,19 +1439,9 @@ let mssg = {
     owner: `🔒 ᴍᴀᴀғ, ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ *ᴏᴡɴᴇʀ*!`,
     mods: `🛡 ᴍᴀᴀғ, ʜᴀɴʏᴀ *ᴍᴏᴅᴇʀᴀᴛᴏʀ* ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ ɪɴɪ!`,}[type]
         if (mssg) return conn.sendFile(m.chat, vn, "owner.mp3", null, m, true, {
-type: 'audioMessage', 
-ptt: false, seconds: 0,contextInfo: {
-         externalAdReply: { showAdAttribution: true,
- mediaUrl: ' ',
-    mediaType: 2, 
-    description: "Runtime: " + muptime,
-    title: "Cuma Untuk Owner😑",
-    body: "Mau Ngapain Coba!",
-    thumbnail: await (await fetch('https://telegra.ph/file/d39461770f98e0c47f5d6.jpg')).buffer(),
-    sourceUrl: ' '
-}
-     }
-    })
+		type: "audioMessage",
+		ptt: true,
+	})
 let msg = {	
     premium: `🔓 ʜᴀʏ ᴋᴀᴋ ғɪᴛᴜʀ ɪɴɪ ᴘʀᴇᴍɪᴜᴍ ᴋᴀᴍᴜ ʙɪsᴀ ᴍᴇᴍɪɴᴛᴀ ᴋᴇᴘᴀᴅᴀ ᴏᴡɴᴇʀ/ᴊᴏɪɴ ɢᴄ ʙᴏᴛ ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ ᴀᴋsᴇs ɢʀᴀᴛɪs`,
     group: `👥 ғɪᴛᴜʀ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴀᴋsᴇs ᴅɪɢʀᴏᴜᴘ sᴀᴊᴀ!`,
