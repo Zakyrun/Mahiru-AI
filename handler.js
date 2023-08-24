@@ -1343,14 +1343,14 @@ export async function participantsUpdate({ id, participants, action }) {
                 let pp, ppgp;
                 try {
                   pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(id, 'image');
+                  ppgp = await this.profilePictureUrl(chat, 'image');
                 } catch (error) {
                   console.error(`Error retrieving profile picture: ${error}`);
                   pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
                   ppgp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
                 } finally {
                   let text = (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user')
-                    .replace('@group', await this.getName(id))
+                    .replace('@subject', await this.getName(id))
                     .replace('@desc', groupMetadata.desc?.toString() || 'Desconocido')
                     .replace('@user', '@' + user.split('@')[0]);
           
@@ -1387,7 +1387,7 @@ export async function participantsUpdate({ id, participants, action }) {
                 let pp, ppgp;
                 try {
                   pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(id, 'image');
+                  ppgp = await this.profilePictureUrl(chat, 'image');
                 } catch (error) {
                   console.error(`Error retrieving profile picture: ${error}`);
                   pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
