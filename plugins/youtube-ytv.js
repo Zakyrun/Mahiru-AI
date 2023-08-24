@@ -1,67 +1,67 @@
-let limit = 80
-import fetch from 'node-fetch'
-import { youtubeSearch, youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper';
-let handler = async (m, { conn, args, usedPrefix, command, isPrems, isOwner }) => {
-  if (!args || !args[0]) throw `🚩 *Example:* ${usedPrefix+command} https://youtu.be/Lq8Hv1TcIT8`
-  await conn.sendMessage(m.chat, { react: { text: "⏳",key: m.key,}})  
-  let chat = global.db.data.chats[m.chat]
-  const isY = /y(es)/gi.test(args[1])
-  const { thumbnail, video: _video, title} = await youtubedl(args[0]).catch(async _ => await youtubedlv2(args[0])).catch(async _ => await youtubedlv3(args[0]))
-  const limitedSize = (isPrems || isOwner ? 99 : limit) * 1024
-  let video, source, res, link, lastError, isLimit
-  for (let i in _video) {
-    try {
-      video = _video[i]
-      isLimit = limitedSize < video.fileSize
-      if (isLimit) continue
-      link = await video.download()
-      if (link) res = await fetch(link)
-      isLimit = res?.headers.get('content-length') && parseInt(res.headers.get('content-length')) < limitedSize
-      if (isLimit) continue
-      if (res) source = await res.arrayBuffer()
-      if (source instanceof ArrayBuffer) break
-    } catch (e) {
-      video = source = link = null
-      lastError = e
+import ytdl from 'ytdl-core';
+import fs from 'fs';
+import os from 'os';
+
+let limit = 500;
+let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
+  if (!args || !args[0]) throw `✳️ Example:\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`;
+  if (!args[0].match(/youtu/gi)) throw `❎ Verify that the YouTube link`;
+
+  let chat = global.db.data.chats[m.chat];
+  try {
+    const info = await ytdl.getInfo(args[0]);
+    const format = ytdl.chooseFormat(info.formats, { quality: 'highest' });
+    if (!format) {
+      throw new Error('No valid formats found');
     }
+
+    if (format.contentLength / (1024 * 1024) >= limit) {
+      return m.reply(`≡ *MAHIRU YTDL*\n\n▢ *⚖️Size*: ${format.contentLength / (1024 * 1024).toFixed(2)}MB\n▢ *🎞️Quality*: ${format.qualityLabel}\n\n▢ The file exceeds the download limit *+${limit} MB*`);
+    }
+
+    const tmpDir = os.tmpdir();
+    const fileName = `${tmpDir}/${info.videoDetails.videoId}.mp4`;
+
+    const writableStream = fs.createWriteStream(fileName);
+    ytdl(args[0], {
+      quality: format.itag,
+    }).pipe(writableStream);
+
+    writableStream.on('finish', () => {
+      conn.sendFile(
+        m.chat,
+        fs.readFileSync(fileName),
+        `${info.videoDetails.videoId}.mp4`,
+        `*YOUTUBE DOWNLOAD*
+	  
+	  *❏ Title: ${info.videoDetails.title}*
+	  *❐ Duration: ${info.videoDetails.lengthSeconds} seconds*
+	  *❑ Views: ${info.videoDetails.viewCount}*
+	  *❒ Upload: ${info.videoDetails.publishDate}*
+	  *❒ Link: ${args[0]}*
+	  
+	  ⊱─━⊱༻𝖒𝖆𝖍𝖎𝖗𝖚-𝖆𝖎༺⊰━─⊰`,
+        m,
+        false,
+        { asDocument: chat.useDocument }
+      );
+
+      fs.unlinkSync(fileName); // Delete the temporary file
+    });
+
+    writableStream.on('error', (error) => {
+      console.error(error);
+      m.reply('Error while trying to download the video. Please try again.');
+    });
+  } catch (error) {
+    console.error(error);
+    m.reply('Error while trying to process the video. Please try again.');
   }
-  if ((!(source instanceof ArrayBuffer) || !link || !res.ok) && !isLimit) throw 'Error: ' + (lastError || 'Can\'t download video')
-  if (!isY && !isLimit) await conn.sendMessage(m.chat, {
-text: `*${htki} YOUTUBE ${htka}*
+};
 
-*${htjava} Title:* ${title}
-*${htjava} Quality:* 360p
-*${htjava} Filesize:* ${video.fileSizeH}
+handler.help = ['ytmp4 <yt-link>'];
+handler.tags = ['dl'];
+handler.command = ['ytmp4', 'ytv'];
 
-${footer}`,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: thumbnail,
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m}) 
-  let _thumb = {}
-  try { _thumb = { thumbnail: await (await fetch(thumbnail)).buffer() } }
-  catch (e) { }
-  if (!isLimit) await conn.sendFile(m.chat, link, title + '.mp4', `
-*${htki} YOUTUBE ${htka}*
+export default handler;
 
-*${htjava} Title:* ${title}
-*${htjava} Quality:* 360p
-*${htjava} Filesize:* ${video.fileSizeH}
-
-${footer}
-`.trim(), m, false, {
-    ..._thumb,
-    asDocument: chat.useDocument
-  })
-}
-handler.help = ['mp4', 'v', ''].map(v => 'yt' + v + ` <url> <without message>`)
-handler.tags = ['downloader']
-handler.command = /^yt(v|mp4)?$/i
-
-handler.exp = 0
-handler.register = true
-handler.limit = true
-export default handler

@@ -44,16 +44,17 @@ let handler = async (m, { conn,isOwner, isROwner, text }) => {
     m.reply(`Mengirim Broadcast Ke ${anu.length} Chat, Waktu Selesai ${anu.length * 0.5} detik`)
     let bcbg = hwaifu.getRandom()
     for (let i of anu) {
-  conn.sendMessage(i, {
-text: `${pesan}`,
-contextInfo: {
-externalAdReply: {
-title: v,
-thumbnailUrl: brocas,
-sourceUrl: sgc,
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m}) 
+  conn.relayMessage(i, 
+{ liveLocationMessage: {
+  degreesLatitude: 35.685506276233525,
+  degreesLongitude: 139.75270667105852,
+  accuracyInMeters: 0,
+degreesClockwiseFromMagneticNorth: 2,
+caption: pesan + ' \n\n「Broadcast Group」' ,
+sequenceNumber: 2,
+timeOffset: 3,
+contextInfo: m,
+}}, {}) 
     }
   m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
 }
