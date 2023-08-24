@@ -1336,43 +1336,89 @@ export async function participantsUpdate({ id, participants, action }) {
     let chat = global.db.data.chats[id] || {}
     let text = ''
     switch (action) {
-                case 'add':
-        case 'remove':
+     case 'add':
             if (chat.welcome) {
-                let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
-                for (let user of participants) {
-                let joinedd = '+1'
-                let outt = '-1'
-                let kykosong2 = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
-                let kykosong = '%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F%CD%8F'
-                let welc = 'Welcome'
-                let outss = 'Sayonara'
-                    let pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'
-                    try {
-                        pp = await this.profilePictureUrl(user, 'image')
-                    } catch (e) {
-                    } finally {
-                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
-                            (chat.sBye || this.bye || conn.bye || 'Bye @user')).replace(/@user/g, '@' + user.split`@`[0])
-let wel = API('popcat', '/welcomecard', {
-                                background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
-                                text1: welc,
-                                text2: await this.getName(user),
-                                text3: joinedd, 
-                                avatar: pp,
-                            })
-                            let lea = API('popcat', '/welcomecard', {
-                                background: 'https://telegra.ph/file/d8aa156977f85c30ddb07.jpg',
-                                text1: outss,
-                                text2: await this.getName(user),
-                                text3: outt,
-                                avatar: pp,
-                            })
-
-this.sendFile(id, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, { mentions: [user] })
-  
-                    }
+              let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata;
+              for (let user of participants) {
+                let pp, ppgp;
+                try {
+                  pp = await this.profilePictureUrl(user, 'image');
+                  ppgp = await this.profilePictureUrl(id, 'image');
+                } catch (error) {
+                  console.error(`Error retrieving profile picture: ${error}`);
+                  pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
+                  ppgp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
+                } finally {
+                  let text = (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user')
+                    .replace('@group', await this.getName(id))
+                    .replace('@desc', groupMetadata.desc?.toString() || 'Desconocido')
+                    .replace('@user', '@' + user.split('@')[0]);
+          
+                  let nthMember = groupMetadata.participants.length;
+                  let secondText = `Welcome, ${await this.getName(user)}, our ${nthMember}th member`;
+          
+                  let welcomeApiUrl = `https://wecomeapi.onrender.com/welcome-image?username=${encodeURIComponent(
+                    await this.getName(user)
+                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
+                    ppgp
+                  )}&memberCount=${encodeURIComponent(
+                    nthMember.toString()
+                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
+                    'https://telegra.ph/file/cd5bade0e75d8e82b7f29.jpg'
+                  )}`;
+          
+                  try {
+                    let welcomeResponse = await fetch(welcomeApiUrl);
+                    let welcomeBuffer = await welcomeResponse.buffer();
+          
+                    this.sendFile(id, welcomeBuffer, 'welcome.png', text, null, false, { mentions: [user] });
+                  } catch (error) {
+                    console.error(`Error generating welcome image: ${error}`);
+                  }
                 }
+              }
+            }
+            break;
+          
+          case 'remove':
+            if (chat.welcome) {
+              let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata;
+              for (let user of participants) {
+                let pp, ppgp;
+                try {
+                  pp = await this.profilePictureUrl(user, 'image');
+                  ppgp = await this.profilePictureUrl(id, 'image');
+                } catch (error) {
+                  console.error(`Error retrieving profile picture: ${error}`);
+                  pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
+                  ppgp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
+                } finally {
+                  let text = (chat.sBye || this.bye || conn.bye || 'HELLO, @user')
+                    .replace('@user', '@' + user.split('@')[0]);
+          
+                  let nthMember = groupMetadata.participants.length;
+                  let secondText = `Goodbye, our ${nthMember}th group member`;
+          
+                  let leaveApiUrl = `https://wecomeapi.onrender.com/leave-image?username=${encodeURIComponent(
+                    await this.getName(user)
+                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
+                    ppgp
+                  )}&memberCount=${encodeURIComponent(
+                    nthMember.toString()
+                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
+                    'https://telegra.ph/file/cd5bade0e75d8e82b7f29.jpg'
+                  )}`;
+          
+                  try {
+                    let leaveResponse = await fetch(leaveApiUrl);
+                    let leaveBuffer = await leaveResponse.buffer();
+          
+                    this.sendFile(id, leaveBuffer, 'leave.png', text, null, false, { mentions: [user] });
+                  } catch (error) {
+                    console.error(`Error generating leave image: ${error}`);
+                  }
+                }
+              }
             }
             break
         case 'promote':
