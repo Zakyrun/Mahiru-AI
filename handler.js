@@ -1343,7 +1343,7 @@ export async function participantsUpdate({ id, participants, action }) {
                 let pp, ppgp;
                 try {
                   pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(chat, 'image');
+                  ppgp = await this.profilePictureUrl(id, 'image');
                 } catch (error) {
                   console.error(`Error retrieving profile picture: ${error}`);
                   pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
@@ -1387,7 +1387,7 @@ export async function participantsUpdate({ id, participants, action }) {
                 let pp, ppgp;
                 try {
                   pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(chat, 'image');
+                  ppgp = await this.profilePictureUrl(id, 'image');
                 } catch (error) {
                   console.error(`Error retrieving profile picture: ${error}`);
                   pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
