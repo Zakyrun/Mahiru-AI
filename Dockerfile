@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["npm", "start"]
+CMD ["node index.js --db mongodb+srv://zaky:sayapunya@cluster0.svuopjj.mongodb.net/?retryWrites=true&w=majority"]
