@@ -75,7 +75,7 @@ global.c_apikey = ' ' // ISI APIKEY PTLC
 
 /*============== APIKEY SIMPEL ==============*/
 global.zenzkey = pickRandom(["b8040941f7"])
-global.lolkey = pickRandom(["ayakaviki"])
+global.lolkey = pickRandom(["haikalgans"])
 
 
 /*============== STAFF ==============*/
@@ -110,7 +110,7 @@ global.APIs = {
   
 }
 global.APIKeys = { 
-  'https://api.lolhuman.xyz': 'ayakaviki',
+  'https://api.lolhuman.xyz': 'haikalgans',
   'https://api.zeks.me': 'apivinz',
   'https://pencarikode.xyz': 'pais',
   'https://melcanz.com': 'melcantik',
