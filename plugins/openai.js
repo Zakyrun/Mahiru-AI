@@ -30,7 +30,7 @@ let handler = async(m, { conn, text }) => {
 
   let thumbnailUrl = "https://link.sazumiviki.me/zuFd2g"
 // make a question to our api
-    let res = await fetch(`https://api.lolhuman.xyz/api/openai-turbo?apikey=ayakaviki&text=${text}`)
+    let res = await fetch(`https://api.lolhuman.xyz/api/openai-turbo?apikey=haikalgans&text=${text}`)
     let zel = await res.json()
    let ai = zel.result
    conn.sendMessage(m.chat, {
