@@ -1,7 +1,7 @@
 {
     "name": "ZAKY GANTENG",
     "version": "3.10.18",
-    "description": "WhatsApp BOT By zykomd",
+    "description": "Mahiru Ai V2",
     "main": "index.js",
     "type": "module",
     "directories": {
@@ -26,16 +26,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/BochilGaming/games-wabot",
+    "homepage": "https://github.com/siapazaky/ZykoBotz-MD-V8",
     "author": {
-        "name": "BochilGaming"
+        "name": "siapazaky"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ZykoBotz-MD"
+        "url": "git+https://github.com/siapazaky"
     },
     "bugs": {
-        "url": "https://github.com/ZykoBotz-MD"
+        "url": "https://github.com/siapazaky"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
