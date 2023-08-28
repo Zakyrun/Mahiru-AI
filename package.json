@@ -26,16 +26,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/siapazaky/ZykoBotz-MD-V8",
+    "homepage": "https://github.com/siapazaky/Mahiru-AI",
     "author": {
         "name": "siapazaky"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/siapazaky/ZykoBotz-MD-V8.git"
+        "url": "git+https://github.com/siapazaky/Mahiru-AI.git"
     },
     "bugs": {
-        "url": "https://github.com/siapazaky/ZykoBotz-MD-V8/issues"
+        "url": "https://github.com/siapazaky/Mahiru-AI/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
