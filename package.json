@@ -32,10 +32,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/siapazaky"
+        "url": "git+https://github.com/siapazaky/ZykoBotz-MD-V8.git"
     },
     "bugs": {
-        "url": "https://github.com/siapazaky"
+        "url": "https://github.com/siapazaky/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
