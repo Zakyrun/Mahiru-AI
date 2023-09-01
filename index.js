@@ -21,15 +21,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname) 
 const { name, author } = require(join(__dirname, "./package.json")) 
 
-say("ZYKOBOTZ MD", {
-  font: "shade",
+say("MAHIRU AI", {
+  colors: ["#f2aa4c"],
+  font: "block",
   align: "center",
-  colors: ["red", "yellow"]
 })
-say("ZYKOBOTZ MD V11 By @zykobotz", {
+say("YT: @sayangiky", {
   font: "console",
   align: "center",
-  colors: ["green"]
+  gradient: ["red', 'magenta"]
 })
 
 var isRunning = false

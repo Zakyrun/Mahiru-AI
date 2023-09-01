@@ -28,16 +28,15 @@ import { format } from 'util'
 import { makeWASocket, protoType, serialize } from './lib/simple.js'
 import { Low, JSONFile } from 'lowdb'
 import pino from 'pino'
-import storeSys from './lib/mahiru.js'
 import {
   mongoDB,
   mongoDBV2
 } from './lib/mongoDB.js'
 import store from './lib/store-single.js'
 const {
-    useMultiFileAuthState,
-    DisconnectReason,
-    fetchLatestBaileysVersion 
+  //useSingleFileAuthState,
+  MessageRetryMap,
+  DisconnectReason
 } = (await import('@adiwajshing/baileys')).default
 
 const { CONNECTING } = ws
@@ -88,43 +87,21 @@ global.loadDatabase = async function loadDatabase() {
 }
 loadDatabase()
 
-global.authFolder = storeSys.fixFileName(`${opts._[0] || ''}sessions`)
-    let { state, saveCreds } = await useMultiFileAuthState(path.resolve('./mahiru'))
-    let { version, isLatest } = await fetchLatestBaileysVersion()
-    console.log(`using WA v${version.join('.')}, isLatest: ${isLatest}`)
-/*const store = storeSys.makeInMemoryStore()
-const sess = `${opts._[0] || 'elaina'}.store.json`
-store.readFromFile(sess)
-global.store = store*/
+global.authFile = `${opts._[0] || 'session'}.data.json`
+const { state, saveState } = store.useSingleFileAuthState(global.authFile)
+const msgRetryCounterMap = MessageRetryMap => { }
 
 const connectionOptions = {
-	    version,
-        printQRInTerminal: true,
-        auth: state,
-        browser: ['Mahiru - AI', 'Safari', '3.1.0'], 
-	      patchMessageBeforeSending: (message) => {
-                const requiresPatch = !!(
-                    message.buttonsMessage 
-                    || message.templateMessage
-                    || message.listMessage
-                );
-                if (requiresPatch) {
-                    message = {
-                        viewOnceMessage: {
-                            message: {
-                                messageContextInfo: {
-                                    deviceListMetadataVersion: 2,
-                                    deviceListMetadata: {},
-                                },
-                                ...message,
-                            },
-                        },
-                    };
-                }
-
-                return message;
-            }, 
-      // logger: pino({ level: 'silent' })
+printQRInTerminal: true,
+patchMessageBeforeSending: (message) => {
+const requiresPatch = !!( message.buttonsMessage || message.templateMessage || message.listMessage );
+if (requiresPatch) { message = { viewOnceMessage: { message: { messageContextInfo: { deviceListMetadataVersion: 2, deviceListMetadata: {}, }, ...message, },},};}
+return message;},
+getMessage: async (key) => ( opts.store.loadMessage(/** @type {string} */(key.remoteJid), key.id) || opts.store.loadMessage(/** @type {string} */(key.id)) || {} ).message || { conversation: 'Please send messages again' },   
+msgRetryCounterMap,
+logger: pino({ level: 'silent' }),
+auth: state,
+browser: ['MAHIRU AI POWERED BY ZAKY','Safari','9.7.0']
 }
 
 global.conn = makeWASocket(connectionOptions)
@@ -173,28 +150,10 @@ async function connectionUpdate(update) {
     }
   if (connection == 'open') { console.log(chalk.yellow('Made by ' + author)) }
   console.log(JSON.stringify(update, null, 4))
+  if (update.receivedPendingNotifications) return this.sendButton(nomorown + '@s.whatsapp.net', 'Bot Successfully Connected', author, null, [['MENU', '/menu']], null)
   if (connection == 'close') {
-    console.log(chalk.yellow(`🚩ㅤConnection closed, if the bot doesn't respond, delete the ${global.authFolder} folder/file and re-scan the QR code`))}
-  if (update.receivedPendingNotifications) {
-  const message = `• *Info*: MAHIRU AI SUDAH TERSAMBUNG!
-◦ *Os*: ${os.platform()} ${os.release()}`
-
-  conn.sendMessage(`6282289304381`, {
-    text: message,
-    contextInfo: {
-      externalAdReply: {
-        title: `${global.namebot}`,
-        body: "SUCCESS - CONNECTED",
-        thumbnailUrl: "https://telegra.ph/file/25d81b0d0e742b73b1a1a.jpg",
-        sourceUrl: `${global.sgc}`,
-        mediaType: 1,
-        renderLargerThumbnail: true
-      }
+    console.log(chalk.yellow(`🚩ㅤConnection closed, if the bot doesn't respond, delete the ${global.authFile} folder/file and re-scan the QR code`))}
     }
-  })
-}
-
-	}
 
 process.on('uncaughtException', console.error)
 // let strQuot = /(["'])(?:(?=(\\?))\2.)*?\1/
@@ -241,7 +200,7 @@ global.reloadHandler = async function (restatConn) {
   conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
   conn.onDelete = handler.deleteUpdate.bind(global.conn)
   conn.connectionUpdate = connectionUpdate.bind(global.conn)
-  conn.credsUpdate = saveCreds.bind(global.conn)
+  conn.credsUpdate = saveState.bind(global.conn, true)
   
   conn.ev.on('messages.upsert', conn.handler)
   conn.ev.on('group-participants.update', conn.participantsUpdate)
@@ -345,7 +304,7 @@ setInterval(async () => {
   const status = global.db.data.settings[conn.user.jid] || {}
   let _uptime = process.uptime() * 1000    
   let uptime = clockString(_uptime)
-  let bio = `🤖 Mahiru Aktif : ${uptime}`
+  let bio = `🤖 Mahiru Ai aktif : ${uptime}`
   await conn.updateProfileStatus(bio).catch(_ => _)
   }, 60000)
   function clockString(ms) {
