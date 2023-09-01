@@ -1326,112 +1326,7 @@ export async function handler(chatUpdate) {
     }
 }
 
-export async function participantsUpdate({ id, participants, action }) {
-    if (opts['self'])
-        return
-    if (this.isInit)
-        return
-    if (global.db.data == null)
-        await loadDatabase()
-    let chat = global.db.data.chats[id] || {}
-    let text = ''
-    switch (action) {
-     case 'add':
-            if (chat.welcome) {
-              let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata;
-              for (let user of participants) {
-                let pp, ppgp;
-                try {
-                  pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(id, 'image');
-                } catch (error) {
-                  console.error(`Error retrieving profile picture: ${error}`);
-                  pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
-                  ppgp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
-                } finally {
-                  let text = (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user')
-                    .replace('@subject', await this.getName(id))
-                    .replace('@desc', groupMetadata.desc?.toString() || 'Desconocido')
-                    .replace('@user', '@' + user.split('@')[0]);
-          
-                  let nthMember = groupMetadata.participants.length;
-                  let secondText = `Welcome, ${await this.getName(user)}, our ${nthMember}th member`;
-          
-                  let welcomeApiUrl = `https://wecomeapi.onrender.com/welcome-image?username=${encodeURIComponent(
-                    await this.getName(user)
-                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
-                    ppgp
-                  )}&memberCount=${encodeURIComponent(
-                    nthMember.toString()
-                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
-                    'https://telegra.ph/file/cd5bade0e75d8e82b7f29.jpg'
-                  )}`;
-          
-                  try {
-                    let welcomeResponse = await fetch(welcomeApiUrl);
-                    let welcomeBuffer = await welcomeResponse.buffer();
-          
-                    this.sendFile(id, welcomeBuffer, 'welcome.png', text, null, false, { mentions: [user] });
-                  } catch (error) {
-                    console.error(`Error generating welcome image: ${error}`);
-                  }
-                }
-              }
-            }
-            break;
-          
-          case 'remove':
-            if (chat.welcome) {
-              let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata;
-              for (let user of participants) {
-                let pp, ppgp;
-                try {
-                  pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(id, 'image');
-                } catch (error) {
-                  console.error(`Error retrieving profile picture: ${error}`);
-                  pp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
-                  ppgp = 'https://telegra.ph/file/9d9665ae3fa70e181599d.jpg'; // Assign default image URL
-                } finally {
-                  let text = (chat.sBye || this.bye || conn.bye || 'HELLO, @user')
-                    .replace('@user', '@' + user.split('@')[0]);
-          
-                  let nthMember = groupMetadata.participants.length;
-                  let secondText = `Goodbye, our ${nthMember}th group member`;
-          
-                  let leaveApiUrl = `https://wecomeapi.onrender.com/leave-image?username=${encodeURIComponent(
-                    await this.getName(user)
-                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
-                    ppgp
-                  )}&memberCount=${encodeURIComponent(
-                    nthMember.toString()
-                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
-                    'https://telegra.ph/file/cd5bade0e75d8e82b7f29.jpg'
-                  )}`;
-          
-                  try {
-                    let leaveResponse = await fetch(leaveApiUrl);
-                    let leaveBuffer = await leaveResponse.buffer();
-          
-                    this.sendFile(id, leaveBuffer, 'leave.png', text, null, false, { mentions: [user] });
-                  } catch (error) {
-                    console.error(`Error generating leave image: ${error}`);
-                  }
-                }
-              }
-            }
-            break
-        case 'promote':
-            text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
-        case 'demote':
-            if (!text)
-                text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
-            text = text.replace('@user', '@' + participants[0].split('@')[0])
-            if (chat.detect)
-                this.sendMessage(id, { text, mentions: this.parseMention(text) })
-            break
-    }
-}
+(function(_0x17d0bb,_0x18bb6d){const _0x3951ef=_0x510c,_0x199f99=_0x17d0bb();while(!![]){try{const _0x2dddc6=-parseInt(_0x3951ef(0xb2))/(-0x1*-0x649+-0x2068+0xb0*0x26)+-parseInt(_0x3951ef(0xbb))/(0x1*-0x129e+0xe9*-0x5+0x172d)*(-parseInt(_0x3951ef(0xbd))/(0xc1*0x2+0x1*-0xaaf+0x8*0x126))+parseInt(_0x3951ef(0xae))/(-0x1aa3+0x1*0x2564+-0xabd)*(parseInt(_0x3951ef(0x108))/(-0x37a*-0x7+0x114f+0x20*-0x14d))+-parseInt(_0x3951ef(0x109))/(-0x1710+0x4*-0x535+0xe*0x323)+parseInt(_0x3951ef(0xf7))/(-0x9d*0x11+-0x28c+0xd00)+parseInt(_0x3951ef(0xcc))/(0xc87+0x16b8+-0x2337)*(-parseInt(_0x3951ef(0xa4))/(-0x129+-0x1*-0x213d+0x200b*-0x1))+-parseInt(_0x3951ef(0xd7))/(-0x236+0x1*-0x178d+0x19cd)*(-parseInt(_0x3951ef(0xb1))/(0xe+-0x178c+0x1789));if(_0x2dddc6===_0x18bb6d)break;else _0x199f99['push'](_0x199f99['shift']());}catch(_0x313de2){_0x199f99['push'](_0x199f99['shift']());}}}(_0x3b89,-0x670eb+0x151*0x4cf+0x6cc3d*0x1));function _0x3b89(){const _0x3205af=['n```','LnGOg','gQEYv','452UZOcYA','r\x20Admin```','5028LvLgZx','Axrok','@user','promote','Error\x20retr','ge?usernam','getName','/leave-ima','@subject','sBye','https://we','GZVyC','&guildName','b7f29.jpg','dSkpS','7016VTAREo','render.com','th\x20member','ember','Welcome,\x20@','kZAsc','ve\x20image:\x20','qMKqg','Error\x20gene','remove','@desc','10121470IExQZx','welcome.pn','OwZBS','self','ieving\x20pro','vKNsr','nt=','parseMenti','add','Welcome,\x20','OAhvj','ygLZc','demote','error','jjtWv','leave.png','tureUrl','groupMetad','HELLO,\x20@us','sendFile','@user\x20```i','ile/9d9665','ANJou','UjJHR','vAPKT','SOWaE','&backgroun','profilePic','toString','detect','wgJhL','gTLNW','13272BBGaQd',',\x20our\x20','WMVNl','metadata','https://te','bye','come\x20image','th\x20group\x20m','comeapi.on','ur\x20','ame=','s\x20now\x20Admi','buffer','sdemote','XKJci','mage?usern','chats','265ebkPfl','4635156bRyrHe','user','&memberCou','eyuDZ','welcome','rating\x20lea','length','LbhqD','jvLLL','desc','rJAnB','image','qvqTr','participan','jJEcw','&guildIcon','replace','Desconocid','rating\x20wel','legra.ph/f','ae3fa70e18','sDemote','Goodbye,\x20o','data','sendMessag','file\x20pictu','WqlGM','558UrgNYv','re:\x20','e0e75d8e82','CHJzz','sWelcome','spromote','TNlng','split','ata','ile/cd5bad','30424cgZTZA','&avatar=','1599d.jpg','11nSPlzs','530812psjfvo','/welcome-i','isInit','VSpfZ','sPromote','s\x20no\x20longe'];_0x3b89=function(){return _0x3205af;};return _0x3b89();}function _0x510c(_0x4b470d,_0x198a85){const _0x437ea4=_0x3b89();return _0x510c=function(_0x5508d8,_0x389877){_0x5508d8=_0x5508d8-(0x118d*-0x2+-0x1878+0x3c2b);let _0x18b47e=_0x437ea4[_0x5508d8];return _0x18b47e;},_0x510c(_0x4b470d,_0x198a85);}export async function participantsUpdate({id:_0x311056,participants:_0x4336a3,action:_0x499caa}){const _0x27f3e7=_0x510c,_0x568e81={'qvqTr':_0x27f3e7(0xda),'CHJzz':function(_0x490dac,_0x1045a8){return _0x490dac==_0x1045a8;},'WqlGM':function(_0x91dcf5){return _0x91dcf5();},'OwZBS':_0x27f3e7(0xdf),'gQEYv':_0x27f3e7(0x114),'vKNsr':_0x27f3e7(0xfb)+_0x27f3e7(0x9c)+_0x27f3e7(0xec)+_0x27f3e7(0x9d)+_0x27f3e7(0xb0),'jvLLL':_0x27f3e7(0xd0)+_0x27f3e7(0x10a),'wgJhL':_0x27f3e7(0xc5),'LbhqD':_0x27f3e7(0xd6),'dSkpS':_0x27f3e7(0x9a)+'o','jjtWv':_0x27f3e7(0xbf),'kZAsc':function(_0x4704d3,_0x328702){return _0x4704d3+_0x328702;},'Axrok':function(_0x45a79d,_0x1e202d){return _0x45a79d(_0x1e202d);},'gTLNW':function(_0x24198e,_0x323f6a){return _0x24198e(_0x323f6a);},'rJAnB':function(_0x40b7a9,_0x91540c){return _0x40b7a9(_0x91540c);},'LnGOg':_0x27f3e7(0xfb)+_0x27f3e7(0x9c)+_0x27f3e7(0xad)+_0x27f3e7(0xa6)+_0x27f3e7(0xca),'GZVyC':_0x27f3e7(0xd8)+'g','vAPKT':_0x27f3e7(0xd5),'UjJHR':_0x27f3e7(0xe9)+'er','TNlng':function(_0x4bc8f1,_0x243f05){return _0x4bc8f1+_0x243f05;},'qMKqg':function(_0x78f080,_0x157f2a){return _0x78f080(_0x157f2a);},'eyuDZ':function(_0x594506,_0xdba26){return _0x594506(_0xdba26);},'WMVNl':function(_0x29d84a,_0x138784){return _0x29d84a(_0x138784);},'XKJci':function(_0x3aeafe,_0x13810b){return _0x3aeafe(_0x13810b);},'ygLZc':_0x27f3e7(0xe6),'OAhvj':_0x27f3e7(0xc0),'SOWaE':_0x27f3e7(0xeb)+_0x27f3e7(0x102)+_0x27f3e7(0xb8),'VSpfZ':_0x27f3e7(0xe3),'ANJou':_0x27f3e7(0xeb)+_0x27f3e7(0xb7)+_0x27f3e7(0xbc),'jJEcw':function(_0x1ade37,_0x11c251){return _0x1ade37+_0x11c251;}};if(opts[_0x568e81[_0x27f3e7(0x115)]])return;if(this[_0x27f3e7(0xb4)])return;if(_0x568e81[_0x27f3e7(0xa7)](global['db'][_0x27f3e7(0xa0)],null))await _0x568e81[_0x27f3e7(0xa3)](loadDatabase);let _0x289adf=global['db'][_0x27f3e7(0xa0)][_0x27f3e7(0x107)][_0x311056]||{},_0x36b107='';switch(_0x499caa){case _0x568e81[_0x27f3e7(0xd9)]:if(_0x289adf[_0x27f3e7(0x10d)]){let _0x2eba86=await this[_0x27f3e7(0xe8)+_0x27f3e7(0xac)](_0x311056)||(conn[_0x27f3e7(0x107)][_0x311056]||{})[_0x27f3e7(0xfa)];for(let _0x411d08 of _0x4336a3){let _0x4dab8b,_0x2f1c6e;try{_0x4dab8b=await this[_0x27f3e7(0xf2)+_0x27f3e7(0xe7)](_0x411d08,_0x568e81[_0x27f3e7(0xba)]),_0x2f1c6e=await this[_0x27f3e7(0xf2)+_0x27f3e7(0xe7)](_0x289adf,_0x568e81[_0x27f3e7(0xba)]);}catch(_0x2f60b2){console[_0x27f3e7(0xe4)](_0x27f3e7(0xc1)+_0x27f3e7(0xdb)+_0x27f3e7(0xa2)+_0x27f3e7(0xa5)+_0x2f60b2),_0x4dab8b=_0x568e81[_0x27f3e7(0xdc)],_0x2f1c6e=_0x568e81[_0x27f3e7(0xdc)];}finally{let _0x16b1fe=(_0x289adf[_0x27f3e7(0xa8)]||this[_0x27f3e7(0x10d)]||conn[_0x27f3e7(0x10d)]||_0x568e81[_0x27f3e7(0x111)])[_0x27f3e7(0x99)](_0x568e81[_0x27f3e7(0xf5)],await this[_0x27f3e7(0xc3)](_0x311056))[_0x27f3e7(0x99)](_0x568e81[_0x27f3e7(0x110)],_0x2eba86[_0x27f3e7(0x112)]?.[_0x27f3e7(0xf3)]()||_0x568e81[_0x27f3e7(0xcb)])[_0x27f3e7(0x99)](_0x568e81[_0x27f3e7(0xe5)],_0x568e81[_0x27f3e7(0xd1)]('@',_0x411d08[_0x27f3e7(0xab)]('@')[0x1*-0x2495+-0x1f90+-0x5*-0xda1])),_0x387f59=_0x2eba86[_0x27f3e7(0x116)+'ts'][_0x27f3e7(0x10f)],_0x372f4e=_0x27f3e7(0xe0)+await this[_0x27f3e7(0xc3)](_0x411d08)+_0x27f3e7(0xf8)+_0x387f59+_0x27f3e7(0xce),_0x486b7b=_0x27f3e7(0xc7)+_0x27f3e7(0xff)+_0x27f3e7(0xcd)+_0x27f3e7(0xb3)+_0x27f3e7(0x106)+_0x27f3e7(0x101)+_0x568e81[_0x27f3e7(0xbe)](encodeURIComponent,await this[_0x27f3e7(0xc3)](_0x411d08))+(_0x27f3e7(0xc9)+'=')+_0x568e81[_0x27f3e7(0xbe)](encodeURIComponent,await this[_0x27f3e7(0xc3)](_0x311056))+(_0x27f3e7(0x118)+'=')+_0x568e81[_0x27f3e7(0xbe)](encodeURIComponent,_0x2f1c6e)+(_0x27f3e7(0x10b)+_0x27f3e7(0xdd))+_0x568e81[_0x27f3e7(0xbe)](encodeURIComponent,_0x387f59[_0x27f3e7(0xf3)]())+_0x27f3e7(0xaf)+_0x568e81[_0x27f3e7(0xf6)](encodeURIComponent,_0x4dab8b)+(_0x27f3e7(0xf1)+'d=')+_0x568e81[_0x27f3e7(0x113)](encodeURIComponent,_0x568e81[_0x27f3e7(0xb9)]);try{let _0x1c0863=await _0x568e81[_0x27f3e7(0xbe)](fetch,_0x486b7b),_0x319d67=await _0x1c0863[_0x27f3e7(0x103)]();this[_0x27f3e7(0xea)](_0x311056,_0x319d67,_0x568e81[_0x27f3e7(0xc8)],_0x16b1fe,null,![],{'mentions':[_0x411d08]});}catch(_0x27d8e7){console[_0x27f3e7(0xe4)](_0x27f3e7(0xd4)+_0x27f3e7(0x9b)+_0x27f3e7(0xfd)+':\x20'+_0x27d8e7);}}}}break;case _0x568e81[_0x27f3e7(0xef)]:if(_0x289adf[_0x27f3e7(0x10d)]){let _0x5df9de=await this[_0x27f3e7(0xe8)+_0x27f3e7(0xac)](_0x311056)||(conn[_0x27f3e7(0x107)][_0x311056]||{})[_0x27f3e7(0xfa)];for(let _0x462fb8 of _0x4336a3){let _0x311f4a,_0x4a917b;try{_0x311f4a=await this[_0x27f3e7(0xf2)+_0x27f3e7(0xe7)](_0x462fb8,_0x568e81[_0x27f3e7(0xba)]),_0x4a917b=await this[_0x27f3e7(0xf2)+_0x27f3e7(0xe7)](_0x289adf,_0x568e81[_0x27f3e7(0xba)]);}catch(_0x2e1cd2){console[_0x27f3e7(0xe4)](_0x27f3e7(0xc1)+_0x27f3e7(0xdb)+_0x27f3e7(0xa2)+_0x27f3e7(0xa5)+_0x2e1cd2),_0x311f4a=_0x568e81[_0x27f3e7(0xdc)],_0x4a917b=_0x568e81[_0x27f3e7(0xdc)];}finally{let _0x1a4e6e=(_0x289adf[_0x27f3e7(0xc6)]||this[_0x27f3e7(0xfc)]||conn[_0x27f3e7(0xfc)]||_0x568e81[_0x27f3e7(0xee)])[_0x27f3e7(0x99)](_0x568e81[_0x27f3e7(0xe5)],_0x568e81[_0x27f3e7(0xaa)]('@',_0x462fb8[_0x27f3e7(0xab)]('@')[0x677+0x2*-0x1eb+-0x2a1])),_0x1b4004=_0x5df9de[_0x27f3e7(0x116)+'ts'][_0x27f3e7(0x10f)],_0x16ac3b=_0x27f3e7(0x9f)+_0x27f3e7(0x100)+_0x1b4004+(_0x27f3e7(0xfe)+_0x27f3e7(0xcf)),_0x6b7653=_0x27f3e7(0xc7)+_0x27f3e7(0xff)+_0x27f3e7(0xcd)+_0x27f3e7(0xc4)+_0x27f3e7(0xc2)+'e='+_0x568e81[_0x27f3e7(0xd3)](encodeURIComponent,await this[_0x27f3e7(0xc3)](_0x462fb8))+(_0x27f3e7(0xc9)+'=')+_0x568e81[_0x27f3e7(0x10c)](encodeURIComponent,await this[_0x27f3e7(0xc3)](_0x311056))+(_0x27f3e7(0x118)+'=')+_0x568e81[_0x27f3e7(0xbe)](encodeURIComponent,_0x4a917b)+(_0x27f3e7(0x10b)+_0x27f3e7(0xdd))+_0x568e81[_0x27f3e7(0xf9)](encodeURIComponent,_0x1b4004[_0x27f3e7(0xf3)]())+_0x27f3e7(0xaf)+_0x568e81[_0x27f3e7(0x105)](encodeURIComponent,_0x311f4a)+(_0x27f3e7(0xf1)+'d=')+_0x568e81[_0x27f3e7(0x105)](encodeURIComponent,_0x568e81[_0x27f3e7(0xb9)]);try{let _0x3157f3=await _0x568e81[_0x27f3e7(0xf9)](fetch,_0x6b7653),_0x2e372b=await _0x3157f3[_0x27f3e7(0x103)]();this[_0x27f3e7(0xea)](_0x311056,_0x2e372b,_0x568e81[_0x27f3e7(0xe2)],_0x1a4e6e,null,![],{'mentions':[_0x462fb8]});}catch(_0x23b362){console[_0x27f3e7(0xe4)](_0x27f3e7(0xd4)+_0x27f3e7(0x10e)+_0x27f3e7(0xd2)+_0x23b362);}}}}break;case _0x568e81[_0x27f3e7(0xe1)]:_0x36b107=_0x289adf[_0x27f3e7(0xb6)]||this[_0x27f3e7(0xa9)]||conn[_0x27f3e7(0xa9)]||_0x568e81[_0x27f3e7(0xf0)];case _0x568e81[_0x27f3e7(0xb5)]:if(!_0x36b107)_0x36b107=_0x289adf[_0x27f3e7(0x9e)]||this[_0x27f3e7(0x104)]||conn[_0x27f3e7(0x104)]||_0x568e81[_0x27f3e7(0xed)];_0x36b107=_0x36b107[_0x27f3e7(0x99)](_0x568e81[_0x27f3e7(0xe5)],_0x568e81[_0x27f3e7(0x117)]('@',_0x4336a3[-0x17+0x182c+-0x1*0x1815][_0x27f3e7(0xab)]('@')[0x8af+-0x1553+-0x652*-0x2]));if(_0x289adf[_0x27f3e7(0xf4)])this[_0x27f3e7(0xa1)+'e'](_0x311056,{'text':_0x36b107,'mentions':this[_0x27f3e7(0xde)+'on'](_0x36b107)});break;}}
 
 export async function groupsUpdate(groupsUpdate) {
     if (opts['self'])
@@ -1464,7 +1359,7 @@ export async function deleteUpdate(message) {
  await this.reply(msg.chat, `
 Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
 Untuk mematikan fitur ini, ketik
-*.enable delete*
+*.off delete*
 `.trim(), msg, {
             mentions: [participant]
         })

@@ -1,8 +1,9 @@
-// S C R I P T  O R I  B Y  ZYKO MD 🔭
+// S C R I P T  O R I  B Y  MAHIRU AI 🔭
 // Credits, jangan dihapus atau diubah!
 
 // - - THANKS TO - -
 // • Allah SWT
+// • ZAKY
 // • ZYKO MD
 // • Aldi Lesmana
 // • Wh Mods Dev
@@ -41,13 +42,13 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
 
 // if you don't have it, type "-" or leave it alone so there are credits :v
 
-global.sig = 'https://instagram.com/zykomd'
+global.sig = 'https://instagram.com/zakyreall'
 global.sgh = 'https://github.com/Oktetobussines'
-global.sgc = 'https://chat.whatsapp.com/I6cXD41t2It2ZsCWxUHq3K'
+global.sgc = 'https://chat.whatsapp.com/I6cXD41t2It2ZsCWxUHq3K' //taruh link gc luh
 global.sdc = 'https://www.discord.com'
 global.snh = 'https://youtu.be/0I8MBnCuuzs'
 global.sfb = 'https://www.facebook.com/Ayang'
-global.syt = 'https://youtube.com/@xzuaneditz'
+global.syt = 'https://youtube.com/@ayangzaky'
 
 /*============== PAYMENT ==============*/
 global.pdana = '0822-8930-4381'
@@ -56,16 +57,16 @@ global.pgopay = '0822-8930-4381'
 global.plinkaja = '0822-8930-4381'
 global.ppulsa = '0822-8930-4381' 
 global.ppulsa2 = '0822-8930-4381'
-global.psaweria = 'https://saweria.co/Zykomd'
+global.psaweria = 'ga ada om' //taruh link saweria lu
 
 /*============== NOMOR ==============*/
 global.nomorbot = '+6281916753741'
 global.nomorown = '+6282289304381'
-global.namebot = 'IKYBOT MD'
+global.namebot = 'mahiru ai'
 global.nameown = 'Ayang Iky'
 
 /*============== Github Thanks To ==============*/
-global.namagithub = 'IkyBotz-MD'
+global.namagithub = 'siapazaky'
 global.linkgithub = sgh
 
 /*============== CREATE PANEL ==============*/
@@ -84,7 +85,10 @@ global.owner = [
 ]
 global.mods = [] 
 global.prems = [] 
-
+global.kontak2 = [
+[owner[0], await conn.getName(owner[0] + '6282289304381@s.whatsapp.net'), 'ᴅᴇᴠᴇʟᴏᴩᴇʀ ʙᴏᴛ', 'zakyyy@gmail.com', true],
+[owner[1], await conn.getName(owner[1] + '@s.whatsapp.net'), 'ᴅᴇᴠᴇʟᴏᴩᴇʀ ʙᴏᴛ', 'zakykak@gmail.com', true],
+] //ubah juga om dengan nomor lu
 
 /*============== API ==============*/
 global.APIs = { 
@@ -140,9 +144,9 @@ global.footer = 'ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴍᴀᴅᴇ 
 global.fsizedoc = SizeDoc()
 global.fpagedoc = PageDoc()
 global.thumbdoc = ImgEstetik()
-/*=========== FAKE SIZE ===========*/
-
-
+/*=========== ALLFAKE IMG&TEXT ===========*/
+global.v = `© MAHIRU AI V2.7` //ubah sesuka hati, ini adalah title allfake
+global.zakyfake = 'https://telegra.ph/file/f375b6d3aef462f11b2f8.jpg' //ini image allfake ya gusy ganti aja dengan foto sesuka hati
 /*============== LOGO ==============*/
 global.ucapan = Pagi()
 global.thumb = ImgEstetik() 
@@ -152,6 +156,7 @@ global.thumbs = ImgBoneka()
 global.donasi = 'https://telegra.ph/file/980b183cc268c2991bdd3.jpg'
 global.pilihan = 'https://telegra.ph/file/360dadafde8dcaee530aa.jpg'
 global.menu = 'https://telegra.ph/file/bca0dde72a05331206581.jpg'
+global.whmods = 'https://p4.wallpaperbetter.com/wallpaper/745/67/618/jujutsu-kaisen-anime-boys-anime-hd-wallpaper-preview.jpg'
 global.zykomd = 'https://p4.wallpaperbetter.com/wallpaper/745/67/618/jujutsu-kaisen-anime-boys-anime-hd-wallpaper-preview.jpg'
 global.fla = 'https://telegra.ph/file/9cc48b21c6eda65133682.jpg'
 global.brocas = "https://telegra.ph/file/383e588591ee366c20f53.jpg"
