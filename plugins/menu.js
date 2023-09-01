@@ -1,10 +1,6 @@
-/*
-* Nama Pengembang: Sazumi Viki
-* Kontak Whatsapp: wa.me/6285236226786
-* Kontak Telegram: t.me/sazumiviki
-* Akun Github: github.com/SazumiVicky
-* Catatan: tolong laporkan kepada saya ketika anda menemukan ada yang menjual script ini
-*/
+//zaky record hasil campuran
+//minimal jangan di hapus mwehehehe
+//sc bukan untuk di jualbeli ya gusy
 
 import axios from 'axios'
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -36,8 +32,8 @@ let handler = async (m, { conn }) => {
 
 ᴅᴀᴘᴀᴛ ᴅɪɢᴜɴᴀᴋᴀɴ sᴇʙᴀɢᴀɪ *ᴇᴅᴜᴋᴀsɪ ᴘᴇʟᴀᴊᴀʀᴀɴ*, *ᴜɴᴅᴜʜᴀɴ ᴍᴇᴅɪᴀ*, *ɢᴀᴍᴇ*, *ᴘᴇɴᴊᴀɢᴀ ɢʀᴜᴘ*, ᴅᴀɴ ʟᴀɪɴɴʏᴀ ʏᴀɴɢ ᴅᴀᴘᴀᴛ ᴍᴇᴍʙᴜᴀᴛ ᴋᴀᴍᴜ ʟᴇʙɪʜ ᴍᴜᴅᴀʜ ᴜɴᴛᴜᴋ ᴍᴇɴᴊᴀʟᴀɴɪ ʜᴀʀɪ-ʜᴀʀɪ:>
 
-╭  ◦ ᴄʀᴇᴀᴛᴏʀ: *ImZaky*
-│  ◦ ʏᴏᴜᴛᴜʙᴇ: *[Not]*
+╭  ◦ ᴄʀᴇᴀᴛᴏʀ: *ᴢᴀᴋʏᴅxᴅ*
+│  ◦ ʏᴏᴜᴛᴜʙᴇ: *[ɴᴏᴛ]*
 ╰  ◦ ᴘʀᴇғɪx: *.*
 
 ᴊɪᴋᴀ ᴀᴅᴀ ᴍᴀsᴀʟᴀʜ ᴅᴀʟᴀᴍ ᴘᴇɴɢɢᴜɴᴀᴀɴ sɪʟᴀʜᴋᴀɴ ʜᴜʙᴜɴɢɪ ᴄʀᴇᴀᴛᴏʀ ᴜɴᴛᴜᴋ ᴍᴇɴᴀɴʏᴀᴋᴀɴ *.ᴏᴡɴᴇʀ*
@@ -68,21 +64,11 @@ let handler = async (m, { conn }) => {
   let sourceUrl = "https://sazumiviki.me";
   let wait = '```Loading completed```';
 
-  const arr = [
-    '```███ 40% *___*```',
-    '```████ 60% *___*```',
-    '```█████ 80% *___*```',
-    '```██████ 100% *___*```',
-    `${greeting} *${user.name}!*`
-  ];
-  
-  const jam = ['🕐', '🕑', '🕒', '🕓', '🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚', '🕛', '✔️', ''];
-  
-  for (let i = 0; i < jam.length; i++) {
+  for (let i = 0; i < emotjam.length; i++) {
     await new Promise(resolve => setTimeout(resolve, 300));
     await conn.sendMessage(m.chat, {
       react: {
-        text: jam[i],
+        text: emotjam[i],
         key: m.key
       }
     });
@@ -113,7 +99,7 @@ let handler = async (m, { conn }) => {
         title: "Mahiru AI - KY",
         body: "Hai kak senang bisa membantu",
         thumbnailUrl: thumbnailUrl,
-        sourceUrl: sig,
+        sourceUrl: gcres, //terserah mau ganti sig apa sgc
         mediaType: 1,
         renderLargerThumbnail: true
       }
@@ -123,7 +109,7 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['menu'];
 handler.tags = ['main'];
-handler.command = /^menu$/i;
+handler.command = /^(menu|ky)$/i;
 
 export default handler
 

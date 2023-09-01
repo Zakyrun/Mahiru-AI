@@ -1,10 +1,5 @@
-/*
-* Nama Pengembang: Sazumi Viki
-* Kontak Whatsapp: wa.me/6285236226786
-* Kontak Telegram: t.me/sazumiviki
-* Akun Github: github.com/SazumiVicky
-* Catatan: tolong laporkan kepada saya ketika anda menemukan ada yang menjual script ini
-*/
+//made by zaky
+//dari comotan wkwk
 
 import ytdl from 'ytdl-core'
 import fs from 'fs'
